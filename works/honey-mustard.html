@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>产品研究：蜂蜜芥末酱 · 作品集</title>
+<style>
+  :root{
+    --bg-deep:#06050f;--bg-card:rgba(20,16,45,0.5);--text-primary:#ece6f5;
+    --text-secondary:#b8a8d4;--text-muted:#7a6e95;--accent-purple:#9b7fd4;
+    --accent-amber:#d4a574;--glass-border:rgba(140,110,210,0.12);
+    --radius:16px;--max-w:820px
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:'PingFang SC','Microsoft YaHei','Hiragino Sans GB',system-ui,sans-serif;
+    background:var(--bg-deep);color:var(--text-primary);line-height:1.8;
+    -webkit-font-smoothing:antialiased;
+  }
+  body::before{
+    content:'';position:fixed;top:0;left:0;width:100%;height:100%;
+    background:radial-gradient(ellipse at 70% 10%,rgba(120,80,200,0.05),transparent 45%),
+               radial-gradient(ellipse at 30% 65%,rgba(200,150,100,0.03),transparent 40%);
+    pointer-events:none;z-index:0;
+  }
+  .container{max-width:var(--max-w);margin:0 auto;padding:0 28px;position:relative;z-index:1}
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(8,6,20,0.78);backdrop-filter:blur(20px);
+    border-bottom:1px solid var(--glass-border);padding:0 28px;
+  }
+  .nav-inner{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:56px}
+  .nav-back{color:var(--accent-purple);text-decoration:none;font-size:0.88rem;letter-spacing:1px;transition:0.2s}
+  .nav-back:hover{color:var(--text-primary)}
+  .nav-title{font-size:0.82rem;color:var(--text-muted)}
+
+  header{
+    padding:64px 0 44px;text-align:center;
+    background:linear-gradient(170deg,rgba(80,50,130,0.06),rgba(20,12,40,0.03));
+  }
+  header .cover{font-size:4.5rem;margin-bottom:14px}
+  header h1{font-size:2rem;font-weight:700;letter-spacing:4px;margin-bottom:6px}
+  header .subtitle{color:var(--text-muted);font-size:0.9rem;letter-spacing:2px}
+  header .tags{display:flex;justify-content:center;gap:10px;margin-top:20px;flex-wrap:wrap}
+  header .tags span{
+    font-size:0.7rem;padding:4px 12px;border-radius:20px;
+    background:rgba(120,100,200,0.1);color:var(--accent-purple);letter-spacing:1px;
+  }
+
+  section{padding:44px 0}
+  section h2{
+    font-size:1.25rem;font-weight:600;letter-spacing:3px;
+    margin-bottom:18px;color:var(--accent-amber);
+    padding-bottom:8px;border-bottom:1px solid var(--glass-border);
+  }
+  section h3{font-size:1.05rem;font-weight:500;color:var(--text-primary);margin:28px 0 12px}
+  section h4{font-size:0.95rem;font-weight:500;color:var(--accent-purple);margin:20px 0 8px}
+  section p{font-size:0.9rem;color:var(--text-secondary);margin-bottom:12px;line-height:1.95}
+  section ul,section ol{padding-left:24px;margin-bottom:16px}
+  section li{font-size:0.88rem;color:var(--text-secondary);margin-bottom:6px;line-height:1.75}
+  table{width:100%;border-collapse:collapse;margin:16px 0;font-size:0.83rem}
+  th,td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--glass-border)}
+  th{color:var(--accent-amber);font-weight:500;font-size:0.78rem;letter-spacing:1px;white-space:nowrap}
+  td{color:var(--text-secondary)}
+  blockquote{
+    border-left:2px solid var(--accent-purple);padding:8px 16px;
+    margin:16px 0;color:var(--text-muted);font-style:italic;font-size:0.88rem;
+  }
+  hr{border:none;border-top:1px solid var(--glass-border);margin:40px 0}
+  pre{
+    background:rgba(0,0,0,0.25);padding:20px;border-radius:var(--radius);
+    overflow-x:auto;font-size:0.8rem;color:var(--text-secondary);line-height:1.5;
+  }
+
+  /* ---- 通道结构图 ---- */
+  .channel-diagram{
+    background:rgba(10,8,30,0.6);border:1px solid var(--glass-border);
+    border-radius:var(--radius);padding:32px 24px;margin:24px 0;
+    overflow-x:auto;
+  }
+  .channel-diagram h4{
+    text-align:center;color:var(--accent-amber);margin-bottom:20px;font-size:0.9rem;letter-spacing:2px;
+  }
+  .channel-bar{
+    display:flex;align-items:stretch;justify-content:center;gap:0;
+    min-width:600px;margin:0 auto;position:relative;
+  }
+  .channel-phase{
+    flex:1;padding:22px 14px;text-align:center;
+    border:1px solid rgba(140,110,210,0.2);
+    position:relative;transition:0.3s;
+  }
+  .channel-phase:first-child{border-radius:12px 0 0 12px}
+  .channel-phase:last-child{border-radius:0 12px 12px 0}
+  .channel-phase:hover{
+    background:rgba(120,90,180,0.08);border-color:var(--accent-purple);z-index:2;
+  }
+  .channel-phase .phase-name{
+    font-size:1rem;font-weight:600;color:var(--text-primary);margin-bottom:6px;letter-spacing:1px;
+  }
+  .channel-phase .phase-range{
+    font-size:0.7rem;color:var(--accent-purple);margin-bottom:8px;letter-spacing:1px;
+  }
+  .channel-phase .phase-desc{
+    font-size:0.76rem;color:var(--text-secondary);line-height:1.6;
+  }
+  .channel-phase .phase-icon{font-size:1.5rem;margin-bottom:6px}
+  .channel-arrow{
+    display:flex;align-items:center;color:var(--accent-purple);
+    font-size:1.2rem;padding:0 2px;
+  }
+
+  /* 通道截面示意 */
+  .channel-cross{
+    display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin:24px 0;
+  }
+  .cross-item{
+    text-align:center;background:rgba(20,16,45,0.4);
+    border:1px solid var(--glass-border);border-radius:var(--radius);
+    padding:20px;width:160px;
+  }
+  .cross-item .cross-svg{width:80px;height:80px;margin:0 auto 10px}
+  .cross-item .cross-label{font-size:0.8rem;color:var(--accent-amber);letter-spacing:1px;margin-bottom:4px}
+  .cross-item .cross-desc{font-size:0.72rem;color:var(--text-muted);line-height:1.5}
+
+  footer{text-align:center;padding:44px 0;font-size:0.76rem;color:var(--text-muted);letter-spacing:2px;border-top:1px solid var(--glass-border)}
+
+  @media(max-width:640px){
+    header h1{font-size:1.4rem}
+    .channel-bar{flex-direction:column;min-width:auto}
+    .channel-phase{border-radius:0!important}
+    .channel-phase:first-child{border-radius:12px 12px 0 0!important}
+    .channel-phase:last-child{border-radius:0 0 12px 12px!important}
+    .channel-arrow{transform:rotate(90deg)}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-back">← 返回作品集</a>
+    <span class="nav-title">产品研究</span>
+  </div>
+</nav>
+
+<header>
+  <div class="container">
+    <div class="cover">🍯</div>
+    <h1>产品研究：蜂蜜芥末酱</h1>
+    <p class="subtitle">「中二模特的柔软反差」— 双通道表里二元设计</p>
+    <div class="tags">
+      <span>产品研究</span><span>双通道</span><span>反差设计</span><span>复购模型</span>
+    </div>
+  </div>
+</header>
+
+<section>
+<div class="container">
+
+<h2>一、产品概览</h2>
+
+<blockquote>一款以「表里反差」为设计核心、用双通道差异映射角色性格的小型入门臀模。</blockquote>
+
+<p>蜂蜜芥末酱是 KAGUYANO 布丁系列中的<strong>小型臀模</strong>，定位在手持杯与大型臀模之间的「入门臀」品类。它是品牌「角色表里反差」设计哲学的集中体现——以<strong>双通道体验的鲜明对比</strong>来映射角色「外表甜美 × 内在辛辣」的表里二元性格结构。</p>
+
+<p>在 KAGUYANO 产品矩阵中，蜂蜜芥末酱与妹妹角色「蛋黄酱」形成姐妹产品组合，是品牌「角色关系驱动复购」策略的典型样本。</p>
+
+<hr>
+
+<h2>二、角色设定深度解析</h2>
+
+<h3>2.1 基本档案</h3>
+
+<table>
+<tr><th style="width:120px">角色名</th><td>蜂蜜芥末酱（Honey Mustard Sauce）</td></tr>
+<tr><th>所属阵营</th><td>多雷米学院·美食研究部</td></tr>
+<tr><th>身份</th><td>二年级前辈学姐 / 时尚杂志签约模特</td></tr>
+<tr><th>外貌特征</th><td>娇小金发萝莉（因此常被拉去拍童装，本人极度反感被说小）</td></tr>
+<tr><th>性格关键词</th><td>自我意识超强、金发中二笨蛋萝莉、美食研究部「快乐源泉」</td></tr>
+<tr><th>核心标签</th><td>纯纯妹控、优雅饮用红茶但实则冒失、总是惹事要妹妹收拾残局</td></tr>
+<tr><th>关键人际关系</th><td><strong>蛋黄酱的姐姐</strong>（但性格比妹妹更不成熟）；与千岛酱、黑椒酱、味淋同为美食研究部成员</td></tr>
+<tr><th>配音台词量</th><td>约 113 句（Galgame《梦呓百寄》中）</td></tr>
+</table>
+
+<h3>2.2 性格深度分析</h3>
+
+<p>蜂蜜芥末酱是 KAGUYANO 角色体系中最具<strong>多层反差结构</strong>的角色，其角色设计存在至少四组对立统一：</p>
+
+<p><strong>姐-妹关系颠倒</strong>——作为姐姐，本应是照顾者——但她才是被妹妹蛋黄酱照顾的那一个。蛋黄酱虽然是妹妹，却是「温柔成熟的人妻型厨娘」。这种颠倒的姐妹关系打破了「年长者=成熟者」的默认设定。</p>
+
+<p><strong>外表-内在颠倒</strong>——娇小童颜的外表（被拉去拍童装）对应着自我意识超强的中二内心——「我最讨厌别人说我小」。外表的「可亲近感」与内在的「攻击性自恋」形成第二层反差。</p>
+
+<p><strong>优雅-冒失颠倒</strong>——日常优雅饮用红茶，实则经常惹出麻烦。红茶的「仪式感」（高档、从容、优雅）与蜂蜜芥末本身的「辛辣冲鼻」形成第三层反差——她在努力扮演一个优雅的前辈，但本性总是暴露。</p>
+
+<p><strong>食物命名的双重隐喻</strong>——蜂蜜=甜美可爱的外表：金发娇小模特；芥末=冲鼻刺激的内在：中二自恋冒失鬼。蜂蜜+芥末的复合口感：甜与辣不是先后出现，而是同时存在——正如她的温柔与冒失无法分离。</p>
+
+<h3>2.3 角色在 IP 生态中的位置</h3>
+
+<pre>
+多雷米学院·美食研究部
+    ├── 蜂蜜芥末酱（姐姐·本产品）
+    │     ↓ "总是惹事要妹妹收拾残局"
+    └── 蛋黄酱（妹妹·独立产品）
+           ↓ 温柔成熟人妻型，照顾人的一方
+
+姐妹关系驱动的购买路径：
+    认识调皮的姐姐 → 好奇「给她善后的妹妹是什么样的」→ 购买蛋黄酱
+    先买温柔的妹妹 → 好奇「被照顾的姐姐有多冒失」→ 购买蜂蜜芥末酱
+</pre>
+
+<p>这是一对<strong>互为购买理由</strong>的角色组合。不是简单的「两个都想要」，而是「只有拥有两个，才能完整理解这对姐妹的故事」。</p>
+
+<hr>
+
+<h2>三、产品物理参数</h2>
+
+<h3>3.1 基础规格</h3>
+
+<table>
+<tr><th>维度</th><th>详情</th></tr>
+<tr><td>产品类型</td><td>小型臀模（双通道）</td></tr>
+<tr><td>系列</td><td>布丁系列（布丁科技柔软工艺）</td></tr>
+<tr><td>重量</td><td>约 1600g</td></tr>
+<tr><td>通道长度</td><td>约 12cm</td></tr>
+<tr><td>通道数量</td><td>双通道（前庭 + 后庭）</td></tr>
+<tr><td>材质</td><td>布丁科技 TPE，主打柔软 Q 弹</td></tr>
+<tr><td>柔软度</td><td>⭐⭐⭐⭐ — 非常柔软，但比油醋汁略可控</td></tr>
+<tr><td>市场价格</td><td>约 ¥300–400（双通道性价比突出）</td></tr>
+</table>
+
+<h3>3.2 材质特性</h3>
+
+<table>
+<tr><th>维度</th><th>表现</th><th>说明</th></tr>
+<tr><td>柔软度</td><td>很软</td><td>比油醋汁略硬一点，提升了操作可控性</td></tr>
+<tr><td>弹性/回弹</td><td>Q弹适中</td><td>撞击回弹存在但不猛烈</td></tr>
+<tr><td>出油量</td><td>中等</td><td>极软材质正常水平，定期打粉即可</td></tr>
+<tr><td>气味控制</td><td>优秀</td><td>带馥郁清香，被评价为 T1 级</td></tr>
+<tr><td>材质韧性</td><td>偏脆弱</td><td>过分追求柔软导致易出现划痕</td></tr>
+<tr><td>形态稳定性</td><td>中</td><td>小型体积降低了变形风险</td></tr>
+</table>
+
+<h3>3.3 包装设计</h3>
+
+<p>蜂蜜芥末酱的包装是 KAGUYANO 系列中被反复称赞的亮点：</p>
+
+<table>
+<tr><th>设计元素</th><th>说明</th></tr>
+<tr><td><strong>外层包装</strong></td><td>二次元美少女风格，角色立绘</td></tr>
+<tr><td><strong>内层设计</strong></td><td>可拆卸露出角色泳装内层——「脱衣仪式感」</td></tr>
+<tr><td><strong>开箱体验</strong></td><td>从外到内的层层剥离，类似 Galgame 的角色解锁</td></tr>
+<tr><td><strong>气味</strong></td><td>开箱即有馥郁清香，非刺鼻工业味</td></tr>
+</table>
+
+<blockquote>包装的「脱衣仪式感」是一个精心设计的用户体验节点——它将开箱这个功能性的动作，转化为「与角色建立亲密关系」的仪式。这与蜂蜜芥末酱「外表优雅、内在冒失」的角色结构完全对应：外层是优雅的红茶时间，内层是冒失的本性暴露。</blockquote>
+
+<hr>
+
+<h2>四、通道结构详解</h2>
+
+<h3>4.1 前庭通道（阴道）——「蜂蜜」的触感翻译</h3>
+
+<table>
+<tr><th>特征</th><th>描述</th></tr>
+<tr><td><strong>入口类型</strong></td><td>柔软开放，无明显环状紧缩障碍</td></tr>
+<tr><td><strong>纹理类型</strong></td><td>肉粒 + 褶皱，在柔软材质下偏「温润包裹」而非颗粒摩擦</td></tr>
+<tr><td><strong>体验定位</strong></td><td><strong>慢玩取向，舒适优先</strong></td></tr>
+<tr><td><strong>最佳使用姿势</strong></td><td>桌上站立，包裹感和撞击反馈最佳</td></tr>
+<tr><td><strong>润滑建议</strong></td><td>减少润滑液用量可适度增强刺激感</td></tr>
+<tr><td><strong>核心感受</strong></td><td>温柔无攻击性的包裹——「蜂蜜」的触感翻译</td></tr>
+</table>
+
+<p><strong>设计分析</strong>：前庭通道定位为「日常」模式。它不制造挑战，不给门槛，就像蜂蜜芥末酱的金发模特外表——甜美、可亲近、没有攻击性。通道在柔软材质下纹理偏「糊」，但这个「糊」在这里不是缺点而是正确选择——前庭通道的目标不是刺激，而是让人放松下来的温润包裹。</p>
+
+<h3>4.2 后庭通道（肛门）——「芥末」的触感翻译</h3>
+
+<table>
+<tr><th>特征</th><th>描述</th></tr>
+<tr><td><strong>入口类型</strong></td><td>极小且韧性极高，进入有明显门槛</td></tr>
+<tr><td><strong>进入条件</strong></td><td>多位用户反馈「必须完全勃起才能进入」</td></tr>
+<tr><td><strong>内部结构</strong></td><td>一段段的收缩感 + 颗粒结构，颗粒在段与段之间提供摩擦</td></tr>
+<tr><td><strong>刺激度</strong></td><td>明显高于前庭，与前者形成鲜明对比</td></tr>
+<tr><td><strong>体验定位</strong></td><td><strong>刺激反差</strong></td></tr>
+<tr><td><strong>核心感受</strong></td><td>紧致、有门槛、有攻击性——「芥末」的触感翻译</td></tr>
+</table>
+
+<p><strong>设计分析</strong>：后庭通道是蜂蜜芥末酱「反差」设计的物理核心。当用户已经适应了前庭的温柔包裹，切换到后庭时会产生强烈的体验对比——「原来你还有这一面」。</p>
+
+<blockquote>「必须完全勃起」不是一个 bug，而是一个<strong>性格化的门槛设计</strong>：正如蜂蜜芥末酱不是谁都能看到她「冒失本性」的那一面，你必须真的「准备好了」，后庭通道才会接纳你。</blockquote>
+
+<h3>4.3 双通道的对比设计</h3>
+
+<table>
+<tr><th>维度</th><th>前庭通道</th><th>后庭通道</th></tr>
+<tr><td><strong>入口难度</strong></td><td>低，平滑</td><td>高，必须充分兴奋</td></tr>
+<tr><td><strong>刺激风格</strong></td><td>温润包裹</td><td>段段收缩 + 颗粒</td></tr>
+<tr><td><strong>节奏</strong></td><td>慢，持续</td><td>快，阶段性</td></tr>
+<tr><td><strong>角色映射</strong></td><td>蜂蜜 = 甜美金发模特</td><td>芥末 = 冲鼻中二内在</td></tr>
+<tr><td><strong>使用阶段</strong></td><td>开场 / 沉浸</td><td>切换 / 突破</td></tr>
+</table>
+
+<p>两个通道不是简单的「一个低刺激一个高刺激」，而是有<strong>各自独立的设计语言</strong>——前庭用「包裹」说话，后庭用「结构」说话。这让用户从心理上感觉买到了「两个产品」，大幅提升了感知性价比。</p>
+
+<hr>
+
+<h2>五、通道结构图：「表里反差」双通道对比</h2>
+
+<div class="channel-diagram">
+  <h4>前庭通道（蜂蜜）纵剖面示意 — 温润渐进式 / 全长约12cm</h4>
+  <div class="channel-bar">
+    <div class="channel-phase" style="background:rgba(200,170,60,0.06)">
+      <div class="phase-icon">🍯</div>
+      <div class="phase-name">迎入</div>
+      <div class="phase-range">入口段</div>
+      <div class="phase-desc">柔软开放入口<br>无环状紧缩<br>平滑包容<br>「欢迎进来」</div>
+    </div>
+    <div class="channel-arrow">▸</div>
+    <div class="channel-phase" style="background:rgba(210,180,70,0.06)">
+      <div class="phase-icon">☁️</div>
+      <div class="phase-name">温润</div>
+      <div class="phase-range">中段</div>
+      <div class="phase-desc">肉粒+褶皱复合<br>纹理被软度柔化<br>温润包裹沉浸<br>「蜂蜜般的甜柔」</div>
+    </div>
+    <div class="channel-arrow">▸</div>
+    <div class="channel-phase" style="background:rgba(220,190,80,0.06)">
+      <div class="phase-icon">🌙</div>
+      <div class="phase-name">余韵</div>
+      <div class="phase-range">末段</div>
+      <div class="phase-desc">渐进收紧<br>温和收束<br>舒适结束<br>「不舍的离开」</div>
+    </div>
+  </div>
+</div>
+
+<div class="channel-diagram">
+  <h4>后庭通道（芥末）纵剖面示意 — 紧致突破式 / 全长约12cm</h4>
+  <div class="channel-bar">
+    <div class="channel-phase" style="background:rgba(180,140,50,0.08)">
+      <div class="phase-icon">🌶️</div>
+      <div class="phase-name">门槛</div>
+      <div class="phase-range">入口段</div>
+      <div class="phase-desc">极小紧致入口<br>韧性极高<br>必须完全勃起<br>「不是谁都能进」</div>
+    </div>
+    <div class="channel-arrow">▸</div>
+    <div class="channel-phase" style="background:rgba(200,150,55,0.08)">
+      <div class="phase-icon">⚡</div>
+      <div class="phase-name">冲击</div>
+      <div class="phase-range">中段</div>
+      <div class="phase-desc">段段收缩<br>颗粒摩擦于段间<br>刺激度跃升<br>「原来你还有这一面」</div>
+    </div>
+    <div class="channel-arrow">▸</div>
+    <div class="channel-phase" style="background:rgba(210,160,60,0.08)">
+      <div class="phase-icon">💥</div>
+      <div class="phase-name">释放</div>
+      <div class="phase-range">末段</div>
+      <div class="phase-desc">收缩渐缓<br>颗粒密度降低<br>刺激回落<br>「终于见底」</div>
+    </div>
+  </div>
+</div>
+
+<div class="channel-cross">
+  <div class="cross-item">
+    <svg class="cross-svg" viewBox="0 0 80 80">
+      <circle cx="40" cy="40" r="30" fill="none" stroke="rgba(220,190,100,0.25)" stroke-width="2"/>
+      <circle cx="40" cy="40" r="18" fill="rgba(220,190,100,0.05)" stroke="rgba(220,190,100,0.12)" stroke-width="0.8"/>
+      <circle cx="40" cy="40" r="5" fill="rgba(230,200,120,0.1)"/>
+      <text x="40" y="74" text-anchor="middle" fill="var(--text-muted)" font-size="9">迎入</text>
+    </svg>
+    <div class="cross-label">柔开入口</div>
+    <div class="cross-desc">无紧缩障碍<br>平滑滑入</div>
+  </div>
+  <div class="cross-item">
+    <svg class="cross-svg" viewBox="0 0 80 80">
+      <circle cx="40" cy="40" r="28" fill="none" stroke="rgba(210,180,90,0.3)" stroke-width="2"/>
+      <path d="M20 32 Q30 22 40 35 Q50 22 60 32" fill="none" stroke="rgba(220,190,100,0.3)" stroke-width="1.5"/>
+      <path d="M20 48 Q30 58 40 45 Q50 58 60 48" fill="none" stroke="rgba(220,190,100,0.25)" stroke-width="1.5"/>
+      <circle cx="30" cy="28" r="1.8" fill="rgba(220,190,100,0.3)"/>
+      <circle cx="50" cy="30" r="1.5" fill="rgba(220,190,100,0.25)"/>
+      <text x="40" y="74" text-anchor="middle" fill="var(--text-muted)" font-size="9">温润</text>
+    </svg>
+    <div class="cross-label">肉粒+褶皱柔化</div>
+    <div class="cross-desc">蜂蜜般的<br>温润包裹</div>
+  </div>
+  <div class="cross-item">
+    <svg class="cross-svg" viewBox="0 0 80 80">
+      <circle cx="40" cy="40" r="24" fill="none" stroke="rgba(200,145,60,0.35)" stroke-width="2.5"/>
+      <circle cx="40" cy="40" r="8" fill="none" stroke="rgba(200,145,60,0.25)" stroke-width="1.5"/>
+      <circle cx="40" cy="40" r="3" fill="rgba(210,155,70,0.2)"/>
+      <text x="40" y="74" text-anchor="middle" fill="var(--text-muted)" font-size="9">门槛</text>
+    </svg>
+    <div class="cross-label">极紧入口</div>
+    <div class="cross-desc">韧性极高<br>必须勃起</div>
+  </div>
+  <div class="cross-item">
+    <svg class="cross-svg" viewBox="0 0 80 80">
+      <circle cx="40" cy="40" r="26" fill="none" stroke="rgba(200,150,60,0.3)" stroke-width="2"/>
+      <circle cx="40" cy="40" r="14" fill="none" stroke="rgba(200,150,60,0.2)" stroke-width="1" stroke-dasharray="3"/>
+      <circle cx="28" cy="32" r="2" fill="rgba(220,160,80,0.3)"/>
+      <circle cx="35" cy="28" r="1.8" fill="rgba(220,160,80,0.25)"/>
+      <circle cx="52" cy="35" r="2" fill="rgba(220,160,80,0.3)"/>
+      <circle cx="45" cy="50" r="1.8" fill="rgba(220,160,80,0.28)"/>
+      <text x="40" y="74" text-anchor="middle" fill="var(--text-muted)" font-size="9">冲击</text>
+    </svg>
+    <div class="cross-label">段段收缩+颗粒</div>
+    <div class="cross-desc">芥末般的<br>冲鼻刺激</div>
+  </div>
+</div>
+
+<hr>
+
+<h2>六、用户评测画像</h2>
+
+<h3>6.1 好评维度</h3>
+
+<h4>🟢 双通道差异鲜明（核心好评点）</h4>
+<blockquote>「前庭慢玩后庭刺激，一个产品两种体验。」</blockquote>
+<p>这是蜂蜜芥末酱最核心的价值感知。在 ¥300–400 的价位上，用户获得的不是一个「中庸的双通道」，而是两个<strong>体验语言完全不同</strong>的通道。B站有UP主发布开箱视频标题直接为「冲的最爽的一集」。</p>
+
+<h4>🟢 包装与气味 T1 级别</h4>
+<blockquote>「包装设计、开箱仪式感、产品气味均处于国产头部水准。」</blockquote>
+<p>包装的「脱衣仪式感」被多次提及——外层角色立绘、内层泳装、层层剥离的开箱流程，让用户在使用产品之前就已经进入了「与角色互动」的心理状态。</p>
+
+<h4>🟢 入门友好体量</h4>
+<p>对于没有大型臀模使用经验的用户来说，蜂蜜芥末酱的体量是一个舒适的过渡区——比杯子有更强的物理存在感，比大型臀模少了体力负担。</p>
+
+<h4>🟢 站立操作体验好</h4>
+<p>与大型臀模类似，放在与胯部齐平的桌子上站立使用是最佳姿势。小型体积减重不减肥——撞击回弹感仍然保留。</p>
+
+<h3>6.2 批评维度</h3>
+
+<h4>🔴 品控不稳</h4>
+<blockquote>「到手就有裂纹。」</blockquote>
+<p>有用户反映收到产品即有裂纹或其他瑕疵。这是KAGUYANO品牌的系统性问题，多个产品均有类似反馈。</p>
+
+<h4>🔴 价格争议</h4>
+<blockquote>「配不上那个价格，属于圈二次元钱来的。」</blockquote>
+<p>¥300–400的定价在国产杯中属于中高区间。对于不care角色IP的用户来说，这个价格显得偏高。</p>
+
+<h4>🔴 出油量偏大</h4>
+<p>蜂蜜芥末酱的出油量处于中等水平，与油醋汁相近，均属于极软材质正常范畴。</p>
+
+<h4>🔴 材质脆弱</h4>
+<blockquote>「太追求软了，容易有划痕。」</blockquote>
+<p>过分追求柔软导致材质表面容易被指甲等硬物划伤。</p>
+
+<h4>🔴 后庭入口过于紧致</h4>
+<blockquote>「必须完全勃起，有时候兴致不到根本进不去。」</blockquote>
+<p>「必须完全勃起」的门槛被一部分用户视为使用障碍而非情趣设计。</p>
+
+<h3>6.3 用户满意度画像</h3>
+
+<pre>
+                  ⬜ 品控（波动大）
+         🟩⬜⬜⬜⬜
+              ⬜
+      🟩🟩🟩🟩⬜  包装/气味（顶级）
+      🟩🟩🟩🟩🟩
+      🟩🟩🟩🟩⬜  双通道差异（优秀）
+      🟩🟩🟩⬜⬜
+      🟩🟩🟩🟩⬜  性价比（好）
+      🟩🟩🟩⬜⬜
+         ⬜⬜⬜  耐用性（偏差）
+         ⬜⬜⬜  出油控制（偏差）
+</pre>
+
+<p>蜂蜜芥末酱的用户满意度呈现<strong>高度分化</strong>——包装和体验设计几乎满分，但品控和耐用性拉低了整体评价。这恰好与角色设定形成了诡异的呼应：一个总是惹事（品控不稳）需要妹妹善后（售后/返修）的「冒失鬼」产品。</p>
+
+<hr>
+
+<h2>七、通感设计：从角色到体验</h2>
+
+<h3>7.1 通感翻译全链</h3>
+
+<pre>
+┌──────────────────────────────────────────────────────────────┐
+│                蜂蜜芥末酱 · 通感翻译链                          │
+├──────────────────────────────────────────────────────────────┤
+│                                                              │
+│  [调味酱风味]       [角色性格]           [物理体验]            │
+│                                                              │
+│  蜂蜜 → 甜美柔滑     金发模特外表          前庭温润包裹          │
+│  ────────────  →   ──────────    →     ──────────             │
+│  芥末 → 冲鼻刺激     中二冒失内在          后庭紧致刺激          │
+│  复合 → 甜辣互衬     妹控反差              双通道性格分裂        │
+│                                                              │
+│        ┌──────────────────────────────────────┐              │
+│        │  核心通感连接词：表里反差              │              │
+│        └──────────────────────────────────────┘              │
+└──────────────────────────────────────────────────────────────┘
+</pre>
+
+<h3>7.2 逐层翻译</h3>
+
+<p><strong>第一层：食物→产品结构</strong></p>
+
+<table>
+<tr><th>调味层次</th><th>通道映射</th><th>体验特征</th></tr>
+<tr><td>蜂蜜的甜美柔滑</td><td>前庭通道</td><td>温润包裹，无攻击性，舒适优先</td></tr>
+<tr><td>芥末的冲鼻刺激</td><td>后庭通道</td><td>紧密收缩，有门槛，刺激优先</td></tr>
+<tr><td>甜辣互衬的复合美</td><td>双通道切换</td><td>对比使两种体验都被放大</td></tr>
+</table>
+
+<p>这不仅仅是「做了两个通道」，而是让两个通道的体验差异<strong>精确映射了蜂蜜与芥末在味觉上的结构性反差</strong>。正如你不会单吃芥末但会被它的冲劲唤醒味蕾，你也不会在未完全兴奋时尝试后庭通道——但后庭通道的存在让前庭通道的温柔被衬托得更加甜美。</p>
+
+<p><strong>第二层：性格→使用流程</strong></p>
+
+<pre>
+使用流程                ←→    角色心理层次
+
+1. 初见：精美包装、角色立绘      → 金发模特的优雅外表（蜂蜜表层）
+2. 前庭：温柔慢玩、包裹沉浸      → 娇小萝莉的可亲近感（蜂蜜延续）
+3. 切换：进入后庭                → 「原来你还有这一面」（芥末冲劲）
+4. 完整体验：两通道对比互衬      → 甜辣复合的完整角色理解
+</pre>
+
+<p>用户在使用过程中，<strong>逐层「发现」角色的不同侧面</strong>——这不是一个平面的一次性体验，而是一个有叙事弧线的角色探索过程。</p>
+
+<p><strong>第三层：姐妹关系→产品生态</strong></p>
+
+<table>
+<tr><th>维度</th><th>蜂蜜芥末酱（姐姐）</th><th>蛋黄酱（妹妹）</th></tr>
+<tr><td><strong>性格</strong></td><td>中二冒失，需要被照顾</td><td>温柔成熟，照顾人的一方</td></tr>
+<tr><td><strong>产品类型</strong></td><td>小型臀模（更主动/更刺激）</td><td>杯子（更温柔/更日常）</td></tr>
+<tr><td><strong>体验定位</strong></td><td>双重反差</td><td>纯一温润</td></tr>
+<tr><td><strong>用户吸引</strong></td><td>反差萌爱好者</td><td>治愈系爱好者</td></tr>
+</table>
+
+<blockquote>认识了调皮的姐姐，自然想认识那个总是为她善后的妹妹——「只有拥有两个，才能完整理解这对姐妹的故事」。</blockquote>
+
+<h3>7.3 核心设计判断：不完美即性格</h3>
+
+<table>
+<tr><th>产品「缺点」</th><th>对应角色特质</th><th>设计解读</th></tr>
+<tr><td>品控不稳</td><td>「总是惹事要妹妹收拾残局」</td><td>冒失的本性在物理层面的延伸</td></tr>
+<tr><td>后庭入口极紧</td><td>「自我意识超强，不是谁都能靠近」</td><td>必须真的「准备好了」才能进入她的内在</td></tr>
+<tr><td>出油量偏大</td><td>「维持优雅表象需要额外努力」</td><td>正如角色维持红茶优雅需要精力，产品维持好状态需要勤保养</td></tr>
+<tr><td>材质脆弱易损</td><td>「外表娇小但内在需要小心呵护」</td><td>你不能粗暴对待她</td></tr>
+</table>
+
+<hr>
+
+<h2>八、竞品定位对比</h2>
+
+<table>
+<tr><th>维度</th><th>蜂蜜芥末酱 (KAGUYANO)</th><th>同类小型臀模</th><th>高端手持杯</th></tr>
+<tr><td><strong>品类</strong></td><td>小型臀模</td><td>小型臀模</td><td>手持杯</td></tr>
+<tr><td><strong>重量</strong></td><td>~1600g</td><td>~1500-2500g</td><td>~300-800g</td></tr>
+<tr><td><strong>通道数</strong></td><td>双通道</td><td>单/双通道</td><td>单通道</td></tr>
+<tr><td><strong>柔软度</strong></td><td>⭐⭐⭐⭐</td><td>⭐⭐⭐-⭐⭐⭐⭐</td><td>⭐⭐⭐-⭐⭐⭐⭐⭐</td></tr>
+<tr><td><strong>角色IP</strong></td><td>有（完整角色+姐妹关系）</td><td>无/弱</td><td>无/弱</td></tr>
+<tr><td><strong>价格带</strong></td><td>¥300-400</td><td>¥200-500</td><td>¥200-600</td></tr>
+<tr><td><strong>包装</strong></td><td>T1级别（二次元+脱衣仪式）</td><td>普通</td><td>普通-精美</td></tr>
+</table>
+
+<h3>蜂蜜芥末酱的护城河</h3>
+<ol>
+<li><strong>双通道差异化深度</strong>：不是简单的「快慢两档」，而是两套独立的体验语言</li>
+<li><strong>1600g 的黄金体量</strong>：在便携与体感之间找到了「入门臀」的甜蜜点</li>
+<li><strong>姐妹关系驱动复购</strong>：蛋黄酱作为互补角色，是最自然的第二件购买</li>
+<li><strong>包装成为体验的一部分</strong>：脱衣仪式感让开箱本身成为值得分享的内容</li>
+</ol>
+
+</div>
+</section>
+
+<footer>© 2026 钟钦阳 · KAGUYANO求职作品集 · 产品研究：蜂蜜芥末酱</footer>
+</body>
+</html>

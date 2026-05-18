@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>产品研究：油醋汁 · 作品集</title>
+<style>
+  :root{
+    --bg-deep:#06050f;--bg-card:rgba(20,16,45,0.5);--text-primary:#ece6f5;
+    --text-secondary:#b8a8d4;--text-muted:#7a6e95;--accent-purple:#9b7fd4;
+    --accent-amber:#d4a574;--glass-border:rgba(140,110,210,0.12);
+    --radius:16px;--max-w:820px
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:'PingFang SC','Microsoft YaHei','Hiragino Sans GB',system-ui,sans-serif;
+    background:var(--bg-deep);color:var(--text-primary);line-height:1.8;
+    -webkit-font-smoothing:antialiased;
+  }
+  body::before{
+    content:'';position:fixed;top:0;left:0;width:100%;height:100%;
+    background:radial-gradient(ellipse at 70% 10%,rgba(120,80,200,0.05),transparent 45%),
+               radial-gradient(ellipse at 30% 65%,rgba(200,150,100,0.03),transparent 40%);
+    pointer-events:none;z-index:0;
+  }
+  .container{max-width:var(--max-w);margin:0 auto;padding:0 28px;position:relative;z-index:1}
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(8,6,20,0.78);backdrop-filter:blur(20px);
+    border-bottom:1px solid var(--glass-border);padding:0 28px;
+  }
+  .nav-inner{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:56px}
+  .nav-back{color:var(--accent-purple);text-decoration:none;font-size:0.88rem;letter-spacing:1px;transition:0.2s}
+  .nav-back:hover{color:var(--text-primary)}
+  .nav-title{font-size:0.82rem;color:var(--text-muted)}
+
+  header{
+    padding:64px 0 44px;text-align:center;
+    background:linear-gradient(170deg,rgba(80,50,130,0.06),rgba(20,12,40,0.03));
+  }
+  header .cover{font-size:4.5rem;margin-bottom:14px}
+  header h1{font-size:2rem;font-weight:700;letter-spacing:4px;margin-bottom:6px}
+  header .subtitle{color:var(--text-muted);font-size:0.9rem;letter-spacing:2px}
+  header .tags{display:flex;justify-content:center;gap:10px;margin-top:20px;flex-wrap:wrap}
+  header .tags span{
+    font-size:0.7rem;padding:4px 12px;border-radius:20px;
+    background:rgba(120,100,200,0.1);color:var(--accent-purple);letter-spacing:1px;
+  }
+
+  section{padding:44px 0}
+  section h2{
+    font-size:1.25rem;font-weight:600;letter-spacing:3px;
+    margin-bottom:18px;color:var(--accent-amber);
+    padding-bottom:8px;border-bottom:1px solid var(--glass-border);
+  }
+  section h3{font-size:1.05rem;font-weight:500;color:var(--text-primary);margin:28px 0 12px}
+  section h4{font-size:0.95rem;font-weight:500;color:var(--accent-purple);margin:20px 0 8px}
+  section p{font-size:0.9rem;color:var(--text-secondary);margin-bottom:12px;line-height:1.95}
+  section ul,section ol{padding-left:24px;margin-bottom:16px}
+  section li{font-size:0.88rem;color:var(--text-secondary);margin-bottom:6px;line-height:1.75}
+  table{width:100%;border-collapse:collapse;margin:16px 0;font-size:0.83rem}
+  th,td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--glass-border)}
+  th{color:var(--accent-amber);font-weight:500;font-size:0.78rem;letter-spacing:1px;white-space:nowrap}
+  td{color:var(--text-secondary)}
+  blockquote{
+    border-left:2px solid var(--accent-purple);padding:8px 16px;
+    margin:16px 0;color:var(--text-muted);font-style:italic;font-size:0.88rem;
+  }
+  hr{border:none;border-top:1px solid var(--glass-border);margin:40px 0}
+  pre{
+    background:rgba(0,0,0,0.25);padding:20px;border-radius:var(--radius);
+    overflow-x:auto;font-size:0.8rem;color:var(--text-secondary);line-height:1.5;
+  }
+
+  /* ---- 通道结构图 ---- */
+  .channel-diagram{
+    background:rgba(10,8,30,0.6);border:1px solid var(--glass-border);
+    border-radius:var(--radius);padding:32px 24px;margin:24px 0;
+    overflow-x:auto;
+  }
+  .channel-diagram h4{
+    text-align:center;color:var(--accent-amber);margin-bottom:20px;font-size:0.9rem;letter-spacing:2px;
+  }
+  .channel-bar{
+    display:flex;align-items:stretch;justify-content:center;gap:0;
+    min-width:600px;margin:0 auto;position:relative;
+  }
+  .channel-phase{
+    flex:1;padding:22px 14px;text-align:center;
+    border:1px solid rgba(140,110,210,0.2);
+    position:relative;transition:0.3s;
+  }
+  .channel-phase:first-child{border-radius:12px 0 0 12px}
+  .channel-phase:last-child{border-radius:0 12px 12px 0}
+  .channel-phase:hover{
+    background:rgba(120,90,180,0.08);border-color:var(--accent-purple);z-index:2;
+  }
+  .channel-phase .phase-name{
+    font-size:1rem;font-weight:600;color:var(--text-primary);margin-bottom:6px;letter-spacing:1px;
+  }
+  .channel-phase .phase-range{
+    font-size:0.7rem;color:var(--accent-purple);margin-bottom:8px;letter-spacing:1px;
+  }
+  .channel-phase .phase-desc{
+    font-size:0.76rem;color:var(--text-secondary);line-height:1.6;
+  }
+  .channel-phase .phase-icon{font-size:1.5rem;margin-bottom:6px}
+  .channel-arrow{
+    display:flex;align-items:center;color:var(--accent-purple);
+    font-size:1.2rem;padding:0 2px;
+  }
+
+  /* 通道截面示意 */
+  .channel-cross{
+    display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin:24px 0;
+  }
+  .cross-item{
+    text-align:center;background:rgba(20,16,45,0.4);
+    border:1px solid var(--glass-border);border-radius:var(--radius);
+    padding:20px;width:160px;
+  }
+  .cross-item .cross-svg{width:80px;height:80px;margin:0 auto 10px}
+  .cross-item .cross-label{font-size:0.8rem;color:var(--accent-amber);letter-spacing:1px;margin-bottom:4px}
+  .cross-item .cross-desc{font-size:0.72rem;color:var(--text-muted);line-height:1.5}
+
+  footer{text-align:center;padding:44px 0;font-size:0.76rem;color:var(--text-muted);letter-spacing:2px;border-top:1px solid var(--glass-border)}
+
+  @media(max-width:640px){
+    header h1{font-size:1.4rem}
+    .channel-bar{flex-direction:column;min-width:auto}
+    .channel-phase{border-radius:0!important}
+    .channel-phase:first-child{border-radius:12px 12px 0 0!important}
+    .channel-phase:last-child{border-radius:0 0 12px 12px!important}
+    .channel-arrow{transform:rotate(90deg)}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-back">&#x2190; &#x8FD4;&#x56DE;&#x4F5C;&#x54C1;&#x96C6;</a>
+    <span class="nav-title">&#x4EA7;&#x54C1;&#x7814;&#x7A76;</span>
+  </div>
+</nav>
+
+<header>
+  <div class="container">
+    <div class="cover">&#x1F525;</div>
+    <h1>产品研究：油醋汁</h1>
+    <p class="subtitle">「狂野会长的极软臀浪」— 二次元角色驱动的极限感官设计</p>
+    <div class="tags">
+      <span>&#x4EA7;&#x54C1;&#x7814;&#x7A76;</span><span>&#x81C0;&#x6A21;</span><span>&#x901A;&#x611F;&#x7FFB;&#x8BD1;</span><span>&#x7206;&#x6B3E;&#x5206;&#x6790;</span>
+    </div>
+  </div>
+</header>
+
+<section>
+<div class="container">
+
+<h2>一、产品概览</h2>
+
+<blockquote>一款以「狂野失控感」为设计目标、宁有争议不平庸的极端柔软旗舰臀模。</blockquote>
+
+<p>油醋汁是 KAGUYANO 布丁系列的<strong>旗舰级产品</strong>，也是品牌旗下知名度最高、讨论度最大的一款。它以「布丁科技」多层 TPE 一体成型填充工艺为核心技术支撑，实现了国产臀模中公认的<strong>最柔软材质</strong>，并以此为基础构建了一套完整的「角色&#x2192;体验」通感设计体系。</p>
+
+<p>在 KAGUYANO 的产品矩阵中，油醋汁占据着<strong>学生会会长</strong>的旗舰位置——它不仅是尺寸最大、重量最重的产品，也是品牌设计哲学最极致的体现。</p>
+
+<hr>
+
+<h2>二、角色设定深度解析</h2>
+
+<h3>2.1 基本档案</h3>
+
+<table>
+<tr><th style="width:120px">角色名</th><td>油醋汁（Vinaigrette Dressing）</td></tr>
+<tr><th>所属阵营</th><td>多雷米学院·学生会</td></tr>
+<tr><th>身份</th><td>学生会会长 / 插画师：铭音（MeIoN）/ 身高：143cm</td></tr>
+<tr><th>性格关键词</th><td>狂野、危险、不循规蹈矩、摇滚朋克、「坏女人」</td></tr>
+<tr><th>核心标签</th><td>追求自由、讨厌规则束缚、行事不羁</td></tr>
+<tr><th>关键人际关系</th><td>番茄酱（傲娇冒失鬼）暗恋会长油醋汁；蓝莓酱为学生会同僚</td></tr>
+</table>
+
+<h3>2.2 性格深度分析</h3>
+
+<p>油醋汁在 KAGUYANO 世界观中处于<strong>权力核心</strong>（学生会会长），但她的行事风格与身份形成强烈反差——她不是刻板严肃的领导者，而是一个散发危险魅力、让人既想靠近又害怕受伤的存在。</p>
+
+<p>这个角色的核心吸引力可以从三个层面理解：</p>
+
+<p><strong>身份与行为的撕裂感</strong>——学生会会长本应是秩序的维护者，但油醋汁却是「讨厌规则束缚」的朋克灵魂。这种撕裂不是角色的缺陷，而是她魅力的来源。</p>
+
+<p><strong>食物命名的感官隐喻</strong>——「油醋汁」作为调味酱，具有<strong>酸冽刺激 + 油脂丰润</strong>的复合口感。酸的穿透力与油的包裹感形成味觉上的双重冲击——这正是产品设计中「极软材质 + 猛烈撞击反馈」的通感原型。</p>
+
+<p><strong>「坏女人」的现代二次元解读</strong>——油醋汁的「坏」不是邪恶，而是一种<strong>不被驯化的野性</strong>。在当代二次元文化中，这种「不讨好、不迎合」的女性角色正在获得越来越强的吸引力——她不是来服务你的，你必须适应她的节奏。</p>
+
+<h3>2.3 角色在IP生态中的位置</h3>
+
+<pre>
+多雷米学院·学生会
+    &#x251C;&#x2500;&#x2500; 会长：油醋汁 &#x2190; 【旗舰产品】
+    &#x251C;&#x2500;&#x2500; 会员：番茄酱（傲娇冒失鬼，暗恋会长）
+    &#x2514;&#x2500;&#x2500; 同僚：蓝莓酱
+
+关系驱动：
+    番茄酱 &#x2192; 暗恋 &#x2192; 油醋汁
+        &#x2193;
+    买了番茄酱的用户 &#x2192; 想要「体验会长」 &#x2192; 购买油醋汁
+</pre>
+
+<p>这种层级关系产生了自然的<strong>向上消费升级路径</strong>：番茄酱（小型臀模/心形包装）是入门，油醋汁是终点。</p>
+
+<hr>
+
+<h2>三、产品物理参数</h2>
+
+<h3>3.1 基础规格</h3>
+
+<table>
+<tr><th>维度</th><th>详情</th></tr>
+<tr><td>产品类型</td><td>等比（1:1比例）仿真臀模</td></tr>
+<tr><td>通道数量</td><td>双通道（前庭 + 后庭）</td></tr>
+<tr><td>材质</td><td>布丁科技 TPE，多层一体成型填充</td></tr>
+<tr><td>柔软度</td><td>&#x2B50;&#x2B50;&#x2B50;&#x2B50;&#x2B50; — 国产臀模中公认最软</td></tr>
+<tr><td>重量</td><td>大型臀模级别（用户反馈「太重」「当健身器材很不错」）</td></tr>
+<tr><td>通道深度</td><td>适中，大多数用户可触底</td></tr>
+<tr><td>市场价格</td><td>国产中高端定位</td></tr>
+</table>
+
+<h3>3.2 材质特性</h3>
+
+<table>
+<tr><th>维度</th><th>表现</th><th>说明</th></tr>
+<tr><td><strong>柔软度</strong></td><td>极致</td><td>多位用户认为超越大魔王脂软</td></tr>
+<tr><td><strong>弹性/回弹</strong></td><td>强</td><td>撞击后回弹猛烈，形成「反冲」交互</td></tr>
+<tr><td><strong>出油量</strong></td><td>中等</td><td>极软材质正常水平，定期打粉即可保持</td></tr>
+<tr><td><strong>气味控制</strong></td><td>良好</td><td>经优化，TPE异味较少</td></tr>
+<tr><td><strong>形态稳定性</strong></td><td>较差</td><td>久置易变形塌陷</td></tr>
+<tr><td><strong>耐用性</strong></td><td>中等</td><td>极软材质容易产生划痕</td></tr>
+</table>
+
+<h3>3.3 维护要求</h3>
+
+<table>
+<tr><th>项目</th><th>难度</th><th>说明</th></tr>
+<tr><td>清洗</td><td>&#x2B50;&#x2B50;&#x2B50;&#x2B50;&#x2B50;</td><td>大+重+软，清洗极其困难</td></tr>
+<tr><td>干燥</td><td>&#x2B50;&#x2B50;&#x2B50;&#x2B50;&#x2B50;</td><td>通道深且材质吸水，晾干耗时</td></tr>
+<tr><td>收纳</td><td>&#x2B50;&#x2B50;&#x2B50;&#x2B50;</td><td>不能长期同一姿势存放，否则变形</td></tr>
+<tr><td>打粉保养</td><td>&#x2B50;&#x2B50;&#x2B50;</td><td>出油中等，定期打粉可保持顺滑</td></tr>
+</table>
+
+<hr>
+
+<h2>四、通道结构详解</h2>
+
+<h3>4.1 前庭通道（阴道）</h3>
+
+<table>
+<tr><th>特征</th><th>描述</th></tr>
+<tr><td><strong>入口类型</strong></td><td>极软包裹式入口，无明显环状紧缩</td></tr>
+<tr><td><strong>纹理类型</strong></td><td>肉粒 + 褶皱复合，但在极软材质下偏「糊」</td></tr>
+<tr><td><strong>通道走势</strong></td><td>渐进收紧，中后段有子宫口突破结构</td></tr>
+<tr><td><strong>体验定位</strong></td><td><strong>慢玩取向</strong></td></tr>
+<tr><td><strong>核心感受</strong></td><td>温润包裹感，纹理细节被软度「糊化」</td></tr>
+</table>
+
+<p><strong>设计分析</strong>：前庭通道的「糊」并非工艺缺陷，而是极致柔软材质的必然代价。当材质硬度降到一定程度，精细纹理的触感辨别度必然下降。KAGUYANO 的选择是<strong>牺牲纹理清晰度换取包裹沉浸感</strong>——这与油醋汁「以包围代替攻击」的角色气质一致。</p>
+
+<h3>4.2 后庭通道（肛门）</h3>
+
+<table>
+<tr><th>特征</th><th>描述</th></tr>
+<tr><td><strong>入口类型</strong></td><td>紧致环状入口，进入有明显阻力</td></tr>
+<tr><td><strong>纹理类型</strong></td><td>颗粒 + 环状收缩，结构层次比前庭分明</td></tr>
+<tr><td><strong>刺激度</strong></td><td>明显高于前庭</td></tr>
+<tr><td><strong>体验定位</strong></td><td><strong>刺激反差</strong></td></tr>
+</table>
+
+<p><strong>设计分析</strong>：后庭通道在极软材质中保持了更好的结构感，提供了一条「逃离软糊」的刺激路径。双通道的差异不是简单的「一个快一个慢」，而是<strong>两种完全不同的体验语言</strong>——前庭是「潮水的包裹」，后庭是「明确的结构」。</p>
+
+<h3>4.3 子宫口设计</h3>
+
+<p>宫颈突破结构存在，但受限于极软材质，突破的「卡顿感」比硬质产品弱。对于追求清晰宫颈突破的用户来说可能不够，但对于偏好慢玩的用户来说，柔和的突破恰恰避免了「过度刺激打断沉浸感」的问题。</p>
+
+<hr>
+
+<h2>五、通道结构图：「双面狂宴」</h2>
+
+<div class="channel-diagram">
+  <h4>前庭通道纵剖面示意 — 三段渐进式结构</h4>
+  <div class="channel-bar">
+    <div class="channel-phase" style="background:rgba(180,80,60,0.06)">
+      <div class="phase-icon">&#x1F31F;</div>
+      <div class="phase-name">软陷</div>
+      <div class="phase-range">入口段</div>
+      <div class="phase-desc">极软包裹式入口<br>无环状紧缩<br>触之即陷<br>「被吞没」</div>
+    </div>
+    <div class="channel-arrow">&#x25B8;</div>
+    <div class="channel-phase" style="background:rgba(190,100,70,0.06)">
+      <div class="phase-icon">&#x1F4A6;</div>
+      <div class="phase-name">潮裹</div>
+      <div class="phase-range">中段</div>
+      <div class="phase-desc">肉粒+褶皱复合<br>纹理被软度糊化<br>温润包裹沉浸<br>「潮水般包围」</div>
+    </div>
+    <div class="channel-arrow">&#x25B8;</div>
+    <div class="channel-phase" style="background:rgba(200,120,80,0.08)">
+      <div class="phase-icon">&#x1F4A5;</div>
+      <div class="phase-name">突破</div>
+      <div class="phase-range">末段</div>
+      <div class="phase-desc">子宫口突破结构<br>柔和卡顿感<br>渐进收紧<br>「终于到了」</div>
+    </div>
+  </div>
+</div>
+
+<div class="channel-diagram">
+  <h4>后庭通道纵剖面示意 — 紧致收缩式结构</h4>
+  <div class="channel-bar">
+    <div class="channel-phase" style="background:rgba(160,60,80,0.08)">
+      <div class="phase-icon">&#x1F512;</div>
+      <div class="phase-name">闯关</div>
+      <div class="phase-range">入口段</div>
+      <div class="phase-desc">紧致环状入口<br>明显阻力<br>「不是随便能进的」</div>
+    </div>
+    <div class="channel-arrow">&#x25B8;</div>
+    <div class="channel-phase" style="background:rgba(180,80,90,0.08)">
+      <div class="phase-icon">&#x26A1;</div>
+      <div class="phase-name">绞榨</div>
+      <div class="phase-range">中段</div>
+      <div class="phase-desc">颗粒+环状收缩<br>结构层次分明<br>刺激度跃升<br>「原来还有这一面」</div>
+    </div>
+    <div class="channel-arrow">&#x25B8;</div>
+    <div class="channel-phase" style="background:rgba(200,100,100,0.08)">
+      <div class="phase-icon">&#x1F525;</div>
+      <div class="phase-name">释放</div>
+      <div class="phase-range">末段</div>
+      <div class="phase-desc">收缩渐弱<br>刺激回落<br>余韵绵长</div>
+    </div>
+  </div>
+</div>
+
+<div class="channel-cross">
+  <div class="cross-item">
+    <svg class="cross-svg" viewBox="0 0 80 80">
+      <circle cx="40" cy="40" r="30" fill="none" stroke="rgba(220,140,100,0.25)" stroke-width="2"/>
+      <circle cx="40" cy="40" r="20" fill="rgba(220,140,100,0.06)" stroke="rgba(220,140,100,0.1)" stroke-width="0.5"/>
+      <circle cx="40" cy="40" r="6" fill="rgba(220,160,120,0.12)"/>
+      <text x="40" y="74" text-anchor="middle" fill="var(--text-muted)" font-size="9">软陷</text>
+    </svg>
+    <div class="cross-label">极软包裹入口</div>
+    <div class="cross-desc">无环状紧缩<br>触之即陷</div>
+  </div>
+  <div class="cross-item">
+    <svg class="cross-svg" viewBox="0 0 80 80">
+      <circle cx="40" cy="40" r="28" fill="none" stroke="rgba(200,130,90,0.3)" stroke-width="2"/>
+      <path d="M20 35 Q30 25 40 38 Q50 25 60 35" fill="none" stroke="rgba(220,150,100,0.35)" stroke-width="1.5"/>
+      <path d="M20 45 Q30 55 40 42 Q50 55 60 45" fill="none" stroke="rgba(220,150,100,0.3)" stroke-width="1.5"/>
+      <circle cx="25" cy="30" r="1.8" fill="rgba(220,160,120,0.4)"/>
+      <circle cx="35" cy="27" r="1.5" fill="rgba(220,160,120,0.35)"/>
+      <circle cx="45" cy="30" r="1.8" fill="rgba(220,160,120,0.4)"/>
+      <circle cx="55" cy="35" r="1.5" fill="rgba(220,160,120,0.3)"/>
+      <text x="40" y="74" text-anchor="middle" fill="var(--text-muted)" font-size="9">潮裹</text>
+    </svg>
+    <div class="cross-label">肉粒+褶皱糊化</div>
+    <div class="cross-desc">纹理被软度模糊<br>沉浸式包裹</div>
+  </div>
+  <div class="cross-item">
+    <svg class="cross-svg" viewBox="0 0 80 80">
+      <circle cx="40" cy="40" r="26" fill="none" stroke="rgba(200,110,80,0.3)" stroke-width="2.5"/>
+      <circle cx="40" cy="40" r="10" fill="rgba(200,110,80,0.1)" stroke="rgba(200,110,80,0.2)" stroke-width="1"/>
+      <circle cx="40" cy="40" r="3" fill="rgba(220,130,100,0.15)"/>
+      <text x="40" y="74" text-anchor="middle" fill="var(--text-muted)" font-size="9">突破</text>
+    </svg>
+    <div class="cross-label">子宫口突破</div>
+    <div class="cross-desc">柔和颈突破<br>渐进收紧</div>
+  </div>
+  <div class="cross-item">
+    <svg class="cross-svg" viewBox="0 0 80 80">
+      <circle cx="40" cy="40" r="22" fill="none" stroke="rgba(200,100,100,0.35)" stroke-width="2.5"/>
+      <circle cx="40" cy="40" r="12" fill="none" stroke="rgba(200,100,100,0.2)" stroke-width="1" stroke-dasharray="3"/>
+      <circle cx="40" cy="40" r="5" fill="rgba(200,100,100,0.1)"/>
+      <circle cx="28" cy="33" r="2" fill="rgba(220,120,100,0.3)"/>
+      <circle cx="35" cy="28" r="1.5" fill="rgba(220,120,100,0.25)"/>
+      <circle cx="50" cy="35" r="2" fill="rgba(220,120,100,0.3)"/>
+      <circle cx="45" cy="50" r="1.8" fill="rgba(220,120,100,0.28)"/>
+      <text x="40" y="74" text-anchor="middle" fill="var(--text-muted)" font-size="9">绞榨</text>
+    </svg>
+    <div class="cross-label">后庭紧致结构</div>
+    <div class="cross-desc">环状收缩+颗粒<br>刺激度跃升</div>
+  </div>
+</div>
+
+<hr>
+
+<h2>六、用户评测画像</h2>
+
+<h3>6.1 好评维度</h3>
+
+<h4>&#x1F7E2; 撞击感无敌（提及率最高）</h4>
+<blockquote>「体验很棒，撞击感无敌。」</blockquote>
+<p>这是油醋汁最被反复提及的核心优点。最佳使用方式为<strong>桌上站立主动传播</strong>——将臀模放在与胯部齐平的桌上，每次撞击时臀模向前抖动并因自身重量和材质弹性猛烈反冲回来，形成一种「被撞回来」的主动交互感。</p>
+<p><strong>物理原理</strong>：大型臀模的重量（惯性）+ 极软TPE的弹性（储能）+ 布丁科技多层填充的回弹速度（释放）&#x2192; 撞击&#x2192;前移&#x2192;储能&#x2192;反冲的完整动力学链条。</p>
+
+<h4>&#x1F7E2; 柔软度顶级</h4>
+<p>多位用户在与大魔王（TOMAX）脂软对比后认为，布丁科技的柔软度在视觉和触感上甚至超越大魔王。这对于国产产品来说是极高的评价——大魔王脂软长期以来是行业柔软度标杆。</p>
+
+<h4>&#x1F7E2; 包裹感沉浸</h4>
+<p>极软材质使通道能够充分贴合，配合重量的惯性，形成「被包裹着撞进去」的深度沉浸感。不是单纯的内壁摩擦，而是<strong>整个臀模的物理存在感</strong>参与其中。</p>
+
+<h4>&#x1F7E2; 慢玩属性突出</h4>
+<p>被 2025 年臀模评测指南归入「等比组」推荐，与极上生腰 8 并列为「高柔软度、高包裹感，慢玩首选」。</p>
+
+<h3>6.2 批评维度</h3>
+
+<h4>&#x1F534; 太重，使用频率低（困扰度最高）</h4>
+<blockquote>「买来1个月都用不了一次。」「当健身器材很不错。」</blockquote>
+<p>大型臀模的结构性困境——重量导致每次使用的体力成本高昂，最终沦为「新鲜感过后吃灰」的重灾区。</p>
+
+<h4>&#x1F534; 太软导致纹理模糊</h4>
+<blockquote>「太软过分了，日起来有种泥牛入海的感觉，很不爽。」</blockquote>
+<p>这是极软路线的结构性代价。一部分用户认为「过于平淡」，缺乏清晰的结构感。这不是品控问题，而是<strong>设计取向问题</strong>——油醋汁选择了极致柔软，就必然牺牲纹理清晰度。</p>
+
+<h4>&#x1F534; 久置易变形塌陷</h4>
+<blockquote>「长期不用放在盒子里，表面出现马里亚纳海沟一样的褶。」</blockquote>
+<p>极软材质的物理限制：柔软与形态稳定不可兼得。正确的收纳方式需要定期翻面。</p>
+
+<h4>&#x1F534; 出油量中等</h4>
+<p>作为极软TPE臀模，出油量处于同类产品中等水平，定期打粉保养即可维持良好状态。</p>
+
+<h3>6.3 用户满意度画像</h3>
+
+<pre>
+                    &#x2B1C; 纹理性（低）
+         &#x1F7E9;&#x2B1C;&#x2B1C;&#x2B1C;&#x2B1C;
+              &#x2B1C;
+      &#x1F7E9;&#x1F7E9;&#x1F7E9;&#x2B1C;&#x2B1C;  柔软度（极高）
+      &#x1F7E9;&#x1F7E9;&#x1F7E9;&#x1F7E9;&#x2B1C;
+      &#x1F7E9;&#x1F7E9;&#x1F7E9;&#x1F7E9;&#x1F7E9;  包裹感（极高）
+      &#x1F7E9;&#x1F7E9;&#x1F7E9;&#x1F7E9;&#x2B1C;
+    &#x1F7E9;&#x1F7E9;&#x1F7E9;&#x1F7E9;&#x1F7E9;&#x1F7E9;&#x2B1C;  撞击反馈（极高）
+    &#x1F7E9;&#x1F7E9;&#x1F7E9;&#x1F7E9;&#x1F7E9;&#x1F7E9;&#x1F7E9;&#x2B1C;
+         &#x2B1C;&#x2B1C;&#x2B1C;  维护便捷性（极低）
+</pre>
+
+<p>油醋汁是一款<strong>极度偏科</strong>的产品——在柔软度、包裹感、撞击反馈上做到极致，在纹理性、维护性、便携性上做出巨大牺牲。它不是「各方面均衡的优等生」，而是<strong>一面倒的偏执狂</strong>。这正是油醋汁最核心的产品策略——<strong>它不试图取悦所有人，而是让对的人狂热。</strong></p>
+
+<hr>
+
+<h2>七、通感设计：从角色到体验</h2>
+
+<h3>7.1 通感翻译全链</h3>
+
+<pre>
+&#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+&#x2502;                   油醋汁 &#xB7; 通感翻译链                        &#x2502;
+&#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+&#x2502;                                                              &#x2502;
+&#x2502;  [调味酱风味]       [角色性格]           [物理体验]            &#x2502;
+&#x2502;                                                              &#x2502;
+&#x2502;  油 &#x2192; 丰润滑腻       狂野不羁             极软包裹              &#x2502;
+&#x2502;  &#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;  &#x2192;   &#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;    &#x2192;     &#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;             &#x2502;
+&#x2502;  醋 &#x2192; 酸烈穿透       危险魅力             撞击回弹猛烈           &#x2502;
+&#x2502;  汁 &#x2192; 流动不控       讨厌规则             材质难以驾驭           &#x2502;
+&#x2502;                                                              &#x2502;
+&#x2502;        &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;                    &#x2502;
+&#x2502;        &#x2502;  核心通感连接词：失控的包裹感   &#x2502;                    &#x2502;
+&#x2502;        &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;                    &#x2502;
+&#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;
+</pre>
+
+<h3>7.2 逐层翻译</h3>
+
+<p><strong>第一层：食物&#x2192;触感</strong></p>
+
+<table>
+<tr><th>风味元素</th><th>触感映射</th><th>产品实现</th></tr>
+<tr><td>油</td><td>润滑、丰腴、包裹</td><td>极软TPE，多层填充，触手油润</td></tr>
+<tr><td>醋</td><td>酸烈、刺激、穿透力</td><td>撞击时的猛烈回弹，不是死板的被动承受</td></tr>
+<tr><td>汁</td><td>流动、浸润、不可控</td><td>材质过软难以固定，「你控制不了它，它有自己的形状」</td></tr>
+</table>
+
+<p><strong>第二层：性格&#x2192;使用体验</strong></p>
+
+<table>
+<tr><th>性格特质</th><th>体验映射</th><th>具体表现</th></tr>
+<tr><td>狂野</td><td>有生命力的动态反馈</td><td>撞击&#x2192;反冲的主动交互，不是被动的承受</td></tr>
+<tr><td>危险</td><td>使用中的「失控感」</td><td>太软难以着力、纹理模糊、容易变形</td></tr>
+<tr><td>不循规蹈矩</td><td>反向定义使用方式</td><td>不是你使用它，而是你必须适应它的节奏</td></tr>
+<tr><td>坏女人的魅力</td><td>上瘾式的不健康关系</td><td>明知维护麻烦、太软不好用，却无法拒绝极致柔软</td></tr>
+</table>
+
+<p><strong>第三层：角色关系&#x2192;产品生态</strong></p>
+<p>作为学生会会长，油醋汁在矩阵中处于旗舰位置。番茄酱（小/甜/心形包装）&#x2192; 油醋汁（大/烈/狂野）的升级路径，通过角色上下级关系自然驱动了用户的消费升级行为。</p>
+
+<h3>7.3 核心设计判断：缺点即灵魂</h3>
+
+<p>油醋汁最精妙的设计决策是：<strong>它的「缺点」不是需要修复的 bug，而是角色性格在物理世界的延伸。</strong></p>
+
+<table>
+<tr><th>功能「缺陷」</th><th>对应的角色特质</th><th>是否应「修复」</th></tr>
+<tr><td>太软难以控制</td><td>狂野不羁</td><td style="color:#c47080">&#x274C; 修复了就不是她了</td></tr>
+<tr><td>出油量中等</td><td>需要定期呵护</td><td style="color:#c47080">&#x274C; 极软材质天然会出油，打粉即可</td></tr>
+<tr><td>纹理模糊</td><td>不是细节派，是氛围派</td><td style="color:#c47080">&#x274C; 模糊=包裹的沉浸，不是攻击的刺激</td></tr>
+<tr><td>维护困难</td><td>坏女人不会伺候你</td><td style="color:#c47080">&#x274C; 你必须为她付出努力</td></tr>
+</table>
+
+<blockquote>如果一款以「狂野坏女人」为角色的产品做得「恰到好处、各方面均衡」，那才是真正的角色背反。油醋汁选择了一条极端的路径——<strong>把柔软推到极致，宁可让部分用户不满意，也要让对的用户获得不可替代的体验。</strong></blockquote>
+
+<hr>
+
+<h2>八、竞品定位对比</h2>
+
+<h3>8.1 同品类竞品矩阵</h3>
+
+<table>
+<tr><th>维度</th><th>油醋汁 (KAGUYANO)</th><th>极上生腰8</th><th>大魔王脂软 (TOMAX)</th></tr>
+<tr><td><strong>品类</strong></td><td>大型臀模</td><td>大型臀模</td><td>手持杯</td></tr>
+<tr><td><strong>柔软度</strong></td><td>&#x2B50;&#x2B50;&#x2B50;&#x2B50;&#x2B50;</td><td>&#x2B50;&#x2B50;&#x2B50;&#x2B50;</td><td>&#x2B50;&#x2B50;&#x2B50;&#x2B50;&#x2B50;</td></tr>
+<tr><td><strong>重量</strong></td><td>重</td><td>重</td><td>轻</td></tr>
+<tr><td><strong>角色IP</strong></td><td>有（完整二次元角色体系）</td><td>无</td><td>无</td></tr>
+<tr><td><strong>撞击反馈</strong></td><td>极强（回弹猛烈）</td><td>强</td><td>N/A（手持）</td></tr>
+<tr><td><strong>维护难度</strong></td><td>极高</td><td>高</td><td>低</td></tr>
+<tr><td><strong>价格带</strong></td><td>中高</td><td>高</td><td>中</td></tr>
+<tr><td><strong>差异化核心</strong></td><td>角色驱动的极端柔软</td><td>老牌经典均衡</td><td>行业柔软度标杆</td></tr>
+</table>
+
+<h3>8.2 油醋汁的护城河</h3>
+<ol>
+<li><strong>材质技术壁垒</strong>：布丁科技多层TPE一体成型填充工艺，不是简单模仿能达到的</li>
+<li><strong>角色IP独占性</strong>：油醋汁角色版权归KAGUYANO，竞品无法复制</li>
+<li><strong>极端定位的先发优势</strong>：「国产最软臀模」这个心智位一旦占据，后来者很难替代</li>
+<li><strong>生态系统锁定</strong>：买了番茄酱&#x2192;油醋汁、油醋汁&#x2192;蜂蜜芥末酱，角色关系网络形成复购闭环</li>
+</ol>
+
+</div>
+</section>
+
+<footer>&copy; 2026 钟钦阳 &#xB7; KAGUYANO求职作品集 &#xB7; 产品研究：油醋汁</footer>
+</body>
+</html>

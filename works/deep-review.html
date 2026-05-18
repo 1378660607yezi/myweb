@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>深度测评报告：飞机杯/名器竞品横评 · 作品集</title>
+<style>
+  :root{
+    --bg-deep:#06050f;--bg-card:rgba(20,16,45,0.5);--text-primary:#ece6f5;
+    --text-secondary:#b8a8d4;--text-muted:#7a6e95;--accent-purple:#9b7fd4;
+    --accent-amber:#d4a574;--glass-border:rgba(140,110,210,0.12);
+    --radius:16px;--max-w:820px
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:'PingFang SC','Microsoft YaHei','Hiragino Sans GB',system-ui,sans-serif;
+    background:var(--bg-deep);color:var(--text-primary);line-height:1.8;
+    -webkit-font-smoothing:antialiased;
+  }
+  body::before{
+    content:'';position:fixed;top:0;left:0;width:100%;height:100%;
+    background:radial-gradient(ellipse at 70% 10%,rgba(120,80,200,0.05),transparent 45%),
+               radial-gradient(ellipse at 30% 65%,rgba(200,150,100,0.03),transparent 40%);
+    pointer-events:none;z-index:0;
+  }
+  .container{max-width:var(--max-w);margin:0 auto;padding:0 28px;position:relative;z-index:1}
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(8,6,20,0.78);backdrop-filter:blur(20px);
+    border-bottom:1px solid var(--glass-border);padding:0 28px;
+  }
+  .nav-inner{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:56px}
+  .nav-back{color:var(--accent-purple);text-decoration:none;font-size:0.88rem;letter-spacing:1px;transition:0.2s}
+  .nav-back:hover{color:var(--text-primary)}
+  .nav-title{font-size:0.82rem;color:var(--text-muted)}
+
+  header{
+    padding:64px 0 44px;text-align:center;
+    background:linear-gradient(170deg,rgba(80,50,130,0.06),rgba(20,12,40,0.03));
+  }
+  header .cover{font-size:4.5rem;margin-bottom:14px}
+  header h1{font-size:2rem;font-weight:700;letter-spacing:4px;margin-bottom:6px}
+  header .subtitle{color:var(--text-muted);font-size:0.9rem;letter-spacing:2px}
+  header .tags{display:flex;justify-content:center;gap:10px;margin-top:20px;flex-wrap:wrap}
+  header .tags span{
+    font-size:0.7rem;padding:4px 12px;border-radius:20px;
+    background:rgba(120,100,200,0.1);color:var(--accent-purple);letter-spacing:1px;
+  }
+
+  section{padding:44px 0}
+  section h2{
+    font-size:1.25rem;font-weight:600;letter-spacing:3px;
+    margin-bottom:18px;color:var(--accent-amber);
+    padding-bottom:8px;border-bottom:1px solid var(--glass-border);
+  }
+  section h3{font-size:1.05rem;font-weight:500;color:var(--text-primary);margin:28px 0 12px}
+  section h4{font-size:0.95rem;font-weight:500;color:var(--accent-purple);margin:20px 0 8px}
+  section p{font-size:0.9rem;color:var(--text-secondary);margin-bottom:12px;line-height:1.95}
+  section ul,section ol{padding-left:24px;margin-bottom:16px}
+  section li{font-size:0.88rem;color:var(--text-secondary);margin-bottom:6px;line-height:1.75}
+  table{width:100%;border-collapse:collapse;margin:16px 0;font-size:0.83rem}
+  th,td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--glass-border)}
+  th{color:var(--accent-amber);font-weight:500;font-size:0.78rem;letter-spacing:1px;white-space:nowrap}
+  td{color:var(--text-secondary)}
+  blockquote{
+    border-left:2px solid var(--accent-purple);padding:8px 16px;
+    margin:16px 0;color:var(--text-muted);font-style:italic;font-size:0.88rem;
+  }
+  hr{border:none;border-top:1px solid var(--glass-border);margin:40px 0}
+  pre{
+    background:rgba(0,0,0,0.25);padding:20px;border-radius:var(--radius);
+    overflow-x:auto;font-size:0.8rem;color:var(--text-secondary);line-height:1.5;
+  }
+
+  .channel-diagram{
+    background:rgba(10,8,30,0.6);border:1px solid var(--glass-border);
+    border-radius:var(--radius);padding:32px 24px;margin:24px 0;
+    overflow-x:auto;
+  }
+  .channel-diagram h4{
+    text-align:center;color:var(--accent-amber);margin-bottom:20px;font-size:0.9rem;letter-spacing:2px;
+  }
+  .channel-bar{
+    display:flex;align-items:stretch;justify-content:center;gap:0;
+    min-width:600px;margin:0 auto;position:relative;
+  }
+  .channel-phase{
+    flex:1;padding:22px 14px;text-align:center;
+    border:1px solid rgba(140,110,210,0.2);
+    position:relative;transition:0.3s;
+  }
+  .channel-phase:first-child{border-radius:12px 0 0 12px}
+  .channel-phase:last-child{border-radius:0 12px 12px 0}
+  .channel-phase:hover{
+    background:rgba(120,90,180,0.08);border-color:var(--accent-purple);z-index:2;
+  }
+  .channel-phase .phase-name{
+    font-size:1rem;font-weight:600;color:var(--text-primary);margin-bottom:6px;letter-spacing:1px;
+  }
+  .channel-phase .phase-range{
+    font-size:0.7rem;color:var(--accent-purple);margin-bottom:8px;letter-spacing:1px;
+  }
+  .channel-phase .phase-desc{
+    font-size:0.76rem;color:var(--text-secondary);line-height:1.6;
+  }
+  .channel-phase .phase-icon{font-size:1.5rem;margin-bottom:6px}
+  .channel-arrow{
+    display:flex;align-items:center;color:var(--accent-purple);
+    font-size:1.2rem;padding:0 2px;
+  }
+
+  .channel-cross{
+    display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin:24px 0;
+  }
+  .cross-item{
+    text-align:center;background:rgba(20,16,45,0.4);
+    border:1px solid var(--glass-border);border-radius:var(--radius);
+    padding:20px;width:160px;
+  }
+  .cross-item .cross-svg{width:80px;height:80px;margin:0 auto 10px}
+  .cross-item .cross-label{font-size:0.8rem;color:var(--accent-amber);letter-spacing:1px;margin-bottom:4px}
+  .cross-item .cross-desc{font-size:0.72rem;color:var(--text-muted);line-height:1.5}
+
+  .ref-gallery{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin:20px 0}
+  .ref-card{
+    background:rgba(20,16,45,0.4);border:1px solid var(--glass-border);
+    border-radius:var(--radius);overflow:hidden;max-width:420px;
+    transition:0.3s;
+  }
+  .ref-card:hover{border-color:var(--accent-purple);transform:translateY(-2px)}
+  .ref-card img{width:100%;height:auto;display:block}
+  .ref-label{
+    display:block;text-align:center;padding:10px;font-size:0.78rem;
+    color:var(--text-muted);letter-spacing:2px;
+  }
+
+  footer{text-align:center;padding:44px 0;font-size:0.76rem;color:var(--text-muted);letter-spacing:2px;border-top:1px solid var(--glass-border)}
+
+  @media(max-width:640px){
+    header h1{font-size:1.4rem}
+    .channel-bar{flex-direction:column;min-width:auto}
+    .channel-phase{border-radius:0!important}
+    .channel-phase:first-child{border-radius:12px 12px 0 0!important}
+    .channel-phase:last-child{border-radius:0 0 12px 12px!important}
+    .channel-arrow{transform:rotate(90deg)}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-back">← 返回作品集</a>
+    <span class="nav-title">竞品分析报告</span>
+  </div>
+</nav>
+
+<header>
+  <div class="container">
+    <div class="cover">📋</div>
+    <h1>深度测评报告：飞机杯/名器竞品横评</h1>
+    <p class="subtitle">覆盖KAGUYANO、对子哈特及七大竞品品牌的完整横向测评</p>
+    <div class="tags">
+      <span>横向测评</span><span>竞品对比</span><span>选购指南</span>
+    </div>
+  </div>
+</header>
+
+<section>
+<div class="container">
+
+<blockquote>编制日期：2026年5月 · 数据来源：什么值得买、南+/北+论坛、绅士俱乐部、知乎、豆瓣、京东/天猫评论区、Hommi日购、友和YOHO、各品牌官方渠道 · 本报告基于公开用户评测、专业测评及电商评论综合整理，力求客观真实，所有评价均有据可查。</blockquote>
+
+<hr>
+
+<h2>一、KAGUYANO 品牌及十款热门产品测评</h2>
+
+<h3>1.1 品牌概况</h3>
+
+<p>KAGUYANO（かぐやの）是中国深圳的国产成人用品品牌，主打<strong>日式二次元风格</strong>，产品线涵盖手持式名器（飞机杯）、臀模、半身腿模等。品牌特色：</p>
+
+<ul>
+  <li>产品以调料/酱料/食物命名（蜂蜜芥末、番茄酱、油醋汁、千岛酱等）</li>
+  <li>每个产品配有精美二次元角色包装，附带立牌、徽章、工牌、明信片等周边特典</li>
+  <li>定位中高端市场，价格偏高但胶体品质在国产品牌中口碑较好</li>
+  <li>分为<strong>布丁款</strong>（多层材料分层设计，偏慢玩）和<strong>倔强款</strong>（单一材料，偏刺激）两种版本</li>
+  <li>活跃于微博、B站等平台，有原创角色IP体系</li>
+  <li>产品由东莞工厂代工生产，品控稳定性偶有波动</li>
+</ul>
+
+<h3>1.2 十款热门产品详细测评</h3>
+
+<hr>
+
+<h4>产品一：蜂蜜芥末（臀模类·品牌招牌）</h4>
+
+<table>
+<tr><th style="width:120px">项目</th><th>详情</th></tr>
+<tr><td><strong>产品类型</strong></td><td>臀模</td></tr>
+<tr><td><strong>重量</strong></td><td>约 2.6kg</td></tr>
+<tr><td><strong>版本</strong></td><td>布丁款（多层填充）/ 倔强款（单层）</td></tr>
+<tr><td><strong>材质</strong></td><td>高品质TPE，布丁款在关键区域有局部布丁填充层</td></tr>
+<tr><td><strong>柔软度</strong></td><td>★★★★☆ 中高柔软度，臀浪效果出色</td></tr>
+<tr><td><strong>出油情况</strong></td><td>★★★★☆ 出油控制在同品牌中较好</td></tr>
+<tr><td><strong>气味</strong></td><td>新品有轻微香气，开封后逐渐减淡</td></tr>
+<tr><td><strong>通道设计</strong></td><td>高拟真度单通道，偏慢玩向，内部仿真褶皱纹理</td></tr>
+<tr><td><strong>刺激度</strong></td><td>★★☆☆☆ 中低，慢玩型</td></tr>
+<tr><td><strong>包裹感</strong></td><td>★★★★☆ 2.6kg带来"豆腐屁股"般的柔软包裹</td></tr>
+<tr><td><strong>易清洗度</strong></td><td>★★☆☆☆ 大型臀模清洗不便</td></tr>
+</table>
+
+<p><strong>综合评价</strong>：KAGUYANO最具代表性的产品，布丁款的多层填充技术带来出色的臀浪和柔软手感，慢玩向设计适合追求真实感和长时间体验的用户。2.6kg的重量在臀模中属于适中偏轻的档位，但已足够提供明显臀浪。缺点是大型产品的清洗维护困难，且价格偏高。</p>
+
+<hr>
+
+<h4>产品二：油醋汁（臀模类·极致柔软）</h4>
+
+<table>
+<tr><th style="width:120px">项目</th><th>详情</th></tr>
+<tr><td><strong>产品类型</strong></td><td>臀模</td></tr>
+<tr><td><strong>重量</strong></td><td>约2.5-3kg</td></tr>
+<tr><td><strong>材质</strong></td><td>超软TPE</td></tr>
+<tr><td><strong>柔软度</strong></td><td>★★★★★ 极度柔软，接近TOMAX Rich Soft水平</td></tr>
+<tr><td><strong>出油情况</strong></td><td>★★★☆☆ 中等，极软TPE的正常出油水平，定期打粉可保持</td></tr>
+<tr><td><strong>气味</strong></td><td>有轻微材料味</td></tr>
+<tr><td><strong>通道设计</strong></td><td>仿真单通道，因过软导致通道轻微塌陷</td></tr>
+<tr><td><strong>刺激度</strong></td><td>★★☆☆☆ 中低，极软材质削弱了纹理感受</td></tr>
+<tr><td><strong>包裹感</strong></td><td>★★★★★ 极软材质带来强力臀浪和包裹</td></tr>
+<tr><td><strong>易清洗度</strong></td><td>★☆☆☆☆ 极软且自重大，清洗极度困难</td></tr>
+</table>
+
+<p><strong>综合评价</strong>：KAGUYANO产品线中柔软度的天花板，但也是争议最大的产品。优点是柔软度接近甚至媲美日本TOMAX大魔王Rich Soft级别，臀浪效果极佳。缺点是极软材质出油量中等偏上，清洗维护也有一定门槛。<strong>推荐给追求极致柔软臀浪体验、愿意定期保养的玩家。</strong></p>
+
+<hr>
+
+<h4>产品三：番茄酱（臀模类·便携轻量）</h4>
+
+<table>
+<tr><th style="width:120px">项目</th><th>详情</th></tr>
+<tr><td><strong>产品类型</strong></td><td>臀模</td></tr>
+<tr><td><strong>重量</strong></td><td>约1.6kg</td></tr>
+<tr><td><strong>版本</strong></td><td>布丁款 / 倔强款</td></tr>
+<tr><td><strong>材质</strong></td><td>高品质TPE，茉莉花香</td></tr>
+<tr><td><strong>柔软度</strong></td><td>★★★★☆ 中高</td></tr>
+<tr><td><strong>出油情况</strong></td><td>★★★★☆ 控制较好</td></tr>
+<tr><td><strong>气味</strong></td><td>茉莉花香，评价积极</td></tr>
+<tr><td><strong>通道设计</strong></td><td>单通道，心形包装盒</td></tr>
+<tr><td><strong>刺激度</strong></td><td>★★☆☆☆（布丁款）/ ★★★☆☆（倔强款）</td></tr>
+<tr><td><strong>包裹感</strong></td><td>★★★☆☆ 1.6kg较轻，包裹感不如大重量产品</td></tr>
+<tr><td><strong>易清洗度</strong></td><td>★★★☆☆ 相对较轻，清洗难度低于大重量臀模</td></tr>
+</table>
+
+<p><strong>综合评价</strong>：KAGUYANO的轻量化臀模产品，1.6kg的重量一只手即可托起，是臀模品类中便携性较好的选择。茉莉花香是其卖点之一。布丁款更有KAGUYANO的特色（多层填充），倔强款则更偏向传统单一材质。2025年12月推出了温泉限定版。<strong>适合想尝试臀模但担心太重/太难打理的用户。</strong></p>
+
+<hr>
+
+<h4>产品四：游悠悠（半身类·超大超软）</h4>
+
+<table>
+<tr><th style="width:120px">项目</th><th>详情</th></tr>
+<tr><td><strong>产品类型</strong></td><td>大型半身</td></tr>
+<tr><td><strong>重量</strong></td><td>超大（具体未公开，远超常规产品）</td></tr>
+<tr><td><strong>材质</strong></td><td>超高柔软度TPE，表面经特殊处理手感清爽</td></tr>
+<tr><td><strong>柔软度</strong></td><td>★★★★★ 接近高端设备水平</td></tr>
+<tr><td><strong>出油情况</strong></td><td>★★★★☆ 表面处理后清爽，出油相对较少</td></tr>
+<tr><td><strong>气味</strong></td><td>气味少</td></tr>
+<tr><td><strong>通道设计</strong></td><td>主通道：无次元逐步收紧设计，纵向+环状纹理丰富，深处紧缩感递增，有明显突破感；副通道：颗粒设计为主，紧致度略高，触感直接清晰</td></tr>
+<tr><td><strong>刺激度</strong></td><td>★★☆☆☆ 慢玩向</td></tr>
+<tr><td><strong>包裹感</strong></td><td>★★★★★ 超大体量+超软材质=极强包裹</td></tr>
+<tr><td><strong>易清洗度</strong></td><td>★☆☆☆☆ "维护地狱"级别</td></tr>
+</table>
+
+<p><strong>综合评价</strong>：2025年5月推出的重磅新品，主打"超大超软慢享受"。材质柔软度在国产品牌中属于顶级，双通道设计各具特色。但体积过大导致操作不便、清洗维护极为困难。<strong>适合有独立存放空间、愿意投入时间维护、追求极致慢玩体验的重度玩家。</strong></p>
+
+<hr>
+
+<h4>产品五：碧（半身类·旗舰可动）</h4>
+
+<table>
+<tr><th style="width:120px">项目</th><th>详情</th></tr>
+<tr><td><strong>产品类型</strong></td><td>半身（70.8×34×30.9cm）</td></tr>
+<tr><td><strong>重量</strong></td><td>18.4kg</td></tr>
+<tr><td><strong>材质</strong></td><td>欧派+臀部局部布丁填充，Q弹软糯；可动大腿关节</td></tr>
+<tr><td><strong>柔软度</strong></td><td>★★★★☆ 布丁填充区极软，其余区域适中</td></tr>
+<tr><td><strong>出油情况</strong></td><td>★★★★☆ 控制较好</td></tr>
+<tr><td><strong>气味</strong></td><td>新品葡萄味，开封后变淡</td></tr>
+<tr><td><strong>通道设计</strong></td><td>芒果通道(13cm)：环形构造锁紧→横纹/颗粒/褶皱三重奏→终点肉筋瓦砾失序刺激；菊花通道(13cm)：浅挖嫩菊→反转金字塔渐进→点阵脉冲→黑洞环抱挤压</td></tr>
+<tr><td><strong>刺激度</strong></td><td>★★★★☆ 中高，双通道提供不同刺激层次</td></tr>
+<tr><td><strong>包裹感</strong></td><td>★★★★★ 半身体积+可动腿带来沉浸式包裹体验</td></tr>
+<tr><td><strong>易清洗度</strong></td><td>★☆☆☆☆ 18.4kg极重，清洗极其困难</td></tr>
+<tr><td><strong>耐用性</strong></td><td>材质偏脆弱，穴口处易崩口/划痕，建议套丝袜保护</td></tr>
+</table>
+
+<p><strong>综合评价</strong>：KAGUYANO半身产品线中的旗舰，融合了Q弹胸部+可动腿+软糯臀部三大特征。可切换厚乳、正入等多种体位。视觉冲击和沉浸感远超普通臀模。但18.4kg的重量使其清洗成为体力活，材质也偏脆弱需小心呵护。<strong>适合追求极致沉浸体验、有体力搬运的收藏型玩家。</strong></p>
+
+<hr>
+
+<h4>产品六：南宫璃音（手持名器·已停产）</h4>
+
+<table>
+<tr><th style="width:120px">项目</th><th>详情</th></tr>
+<tr><td><strong>产品类型</strong></td><td>手持名器（飞机杯）</td></tr>
+<tr><td><strong>版本</strong></td><td>布丁版（2025年3月推出）</td></tr>
+<tr><td><strong>材质</strong></td><td>TPE，底部带语音按钮（角色IP沉浸式体验）</td></tr>
+<tr><td><strong>柔软度</strong></td><td>★★★☆☆ 中等偏软</td></tr>
+<tr><td><strong>出油情况</strong></td><td>★★★☆☆ 一般</td></tr>
+<tr><td><strong>通道设计</strong></td><td>主通道+副通道，螺旋肉筋+颗粒+弯折设计，子宫段触感清晰，渐进式刺激</td></tr>
+<tr><td><strong>刺激度</strong></td><td>★★★★☆ 中高</td></tr>
+<tr><td><strong>包裹感</strong></td><td>★★★☆☆ 标准手持杯级别</td></tr>
+<tr><td><strong>易清洗度</strong></td><td>★★★★☆ 手持杯相对易洗</td></tr>
+</table>
+
+<p><strong>综合评价</strong>：KAGUYANO在2024年9月推出的角色IP同名产品，布丁版于2025年3月发售。底部语音按钮增加了角色沉浸感，通道的渐进式刺激设计受到好评。但目前已处于停产状态，市面存量有限。<strong>适合二次元爱好者收藏使用，但有溢价风险。</strong></p>
+
+<hr>
+
+<h4>产品七：菲亚帕帕（手持名器·刺激向）</h4>
+
+<table>
+<tr><th style="width:120px">项目</th><th>详情</th></tr>
+<tr><td><strong>产品类型</strong></td><td>手持名器（飞机杯）</td></tr>
+<tr><td><strong>材质</strong></td><td>TPE，偏硬</td></tr>
+<tr><td><strong>柔软度</strong></td><td>★★☆☆☆ 偏硬</td></tr>
+<tr><td><strong>出油情况</strong></td><td>★★★☆☆ 一般</td></tr>
+<tr><td><strong>通道设计</strong></td><td>单通道，刺激度拉满的"榨汁机"级别设计</td></tr>
+<tr><td><strong>刺激度</strong></td><td>★★★★★ 全系最高之一</td></tr>
+<tr><td><strong>包裹感</strong></td><td>★★★☆☆</td></tr>
+<tr><td><strong>易清洗度</strong></td><td>★★★★☆</td></tr>
+</table>
+
+<p><strong>综合评价</strong>：KAGUYANO产品线中的"硬核小钢炮"，主打极致刺激。日式硬核风格，通道设计直接猛烈。<strong>仅推荐给追求高强度刺激的老玩家，新手切勿尝试。</strong></p>
+
+<hr>
+
+<h4>产品八：马克希亚（手持名器·均衡向）</h4>
+
+<table>
+<tr><th style="width:120px">项目</th><th>详情</th></tr>
+<tr><td><strong>产品类型</strong></td><td>手持名器</td></tr>
+<tr><td><strong>发售时间</strong></td><td>2025年3月</td></tr>
+<tr><td><strong>材质</strong></td><td>高品质TPE</td></tr>
+<tr><td><strong>柔软度</strong></td><td>★★★☆☆ 中等</td></tr>
+<tr><td><strong>出油情况</strong></td><td>★★★☆☆</td></tr>
+<tr><td><strong>通道设计</strong></td><td>单通道，独特内部纹理设计</td></tr>
+<tr><td><strong>刺激度</strong></td><td>★★★☆☆ 中等</td></tr>
+<tr><td><strong>包裹感</strong></td><td>★★★☆☆</td></tr>
+<tr><td><strong>综合推荐度</strong></td><td>★★★★☆</td></tr>
+</table>
+
+<p><strong>综合评价</strong>：2025年新品，以调酒师角色为主题，日系设计风格。体验均衡，没有明显短板。<strong>适合喜欢日系二次元风格、想要中等刺激的玩家。</strong></p>
+
+<hr>
+
+<h4>产品九：奇奇（手持名器·特殊结构）</h4>
+
+<table>
+<tr><th style="width:120px">项目</th><th>详情</th></tr>
+<tr><td><strong>产品类型</strong></td><td>手持名器</td></tr>
+<tr><td><strong>发售时间</strong></td><td>2025年10月</td></tr>
+<tr><td><strong>材质</strong></td><td>TPE</td></tr>
+<tr><td><strong>柔软度</strong></td><td>★★★☆☆</td></tr>
+<tr><td><strong>通道设计</strong></td><td>独特泄殖腔结构设计（兽娘/鸟娘主题）</td></tr>
+<tr><td><strong>刺激度</strong></td><td>★★★★☆</td></tr>
+<tr><td><strong>特点</strong></td><td>非传统人体仿真通道，创新结构</td></tr>
+</table>
+
+<p><strong>综合评价</strong>：KAGUYANO在通道设计上的大胆创新之作，以兽娘/鸟娘为角色设定，采用了独特的泄殖腔结构——这在同类产品中极为少见。<strong>适合追求新鲜体验、想尝试非传统通道设计的猎奇玩家。</strong></p>
+
+<hr>
+
+<h4>产品十：水野莉莉（手持名器·入门向）</h4>
+
+<table>
+<tr><th style="width:120px">项目</th><th>详情</th></tr>
+<tr><td><strong>产品类型</strong></td><td>手持名器</td></tr>
+<tr><td><strong>发售时间</strong></td><td>2025年5月</td></tr>
+<tr><td><strong>材质</strong></td><td>TPE</td></tr>
+<tr><td><strong>柔软度</strong></td><td>★★★☆☆</td></tr>
+<tr><td><strong>出油情况</strong></td><td>★★★☆☆</td></tr>
+<tr><td><strong>通道设计</strong></td><td>单通道，标准纹理</td></tr>
+<tr><td><strong>刺激度</strong></td><td>★★★☆☆ 中等</td></tr>
+<tr><td><strong>包裹感</strong></td><td>★★★☆☆</td></tr>
+<tr><td><strong>性价比</strong></td><td>★★★★☆</td></tr>
+</table>
+
+<p><strong>综合评价</strong>：高颜值二次元角色产品，定位偏入门级。品质在KAGUYANO产品线中属于中规中矩，但价格相对亲民。<strong>适合想体验KAGUYANO品牌但预算有限的入门玩家。</strong></p>
+
+<hr>
+
+<h3>1.3 KAGUYANO 品牌总结</h3>
+
+<table>
+<tr><th>维度</th><th>评价</th></tr>
+<tr><td><strong>二次元沉浸感</strong></td><td>★★★★★ 行业顶级，角色IP+特典体系完善</td></tr>
+<tr><td><strong>胶体品质</strong></td><td>★★★★☆ 中高端水平，布丁系列表现突出</td></tr>
+<tr><td><strong>品控稳定性</strong></td><td>★★★☆☆ 代工模式导致批次间存在差异</td></tr>
+<tr><td><strong>出油控制</strong></td><td>★★★☆☆ 参差不齐，不同产品表现有差异</td></tr>
+<tr><td><strong>性价比</strong></td><td>★★★☆☆ 价格偏高，有"为二次元买单"的溢价</td></tr>
+<tr><td><strong>创新性</strong></td><td>★★★★☆ 通道设计和大件产品有创意</td></tr>
+</table>
+
+<hr>
+
+<h2>二、对子哈特 (ToysHeart) 品牌及十款热门产品测评</h2>
+
+<h3>2.1 品牌概况</h3>
+
+<p>对子哈特是日本老牌成人用品品牌，公司创立于1983年，品牌于1999年在日本正式注册，以<strong>动漫二次元风格包装</strong>和<strong>弯曲异形通道设计</strong>闻名。在多个行业榜单中稳居日系品牌前列。</p>
+
+<ul>
+  <li>材质通过日本厚生劳动省食品卫生法认证</li>
+  <li>全系产品不含润滑液，需另行购买</li>
+  <li>TPE材质不可外翻清洗，需配合保护粉保养</li>
+  <li>价格区间约 ¥90-1000+元</li>
+  <li><strong>注意</strong>：官方已多次警示市面有假货，建议通过京东自营/天猫旗舰店等正规渠道购买</li>
+</ul>
+
+<h3>2.2 十款热门产品详细测评</h3>
+
+<hr>
+
+<h4>产品一：R20 一代（经典旗舰·榨汁神器）</h4>
+
+<table>
+<tr><th style="width:120px">项目</th><th>详情</th></tr>
+<tr><td><strong>产品类型</strong></td><td>手持名器</td></tr>
+<tr><td><strong>重量</strong></td><td>约405g</td></tr>
+<tr><td><strong>全长</strong></td><td>约19cm</td></tr>
+<tr><td><strong>通道长度</strong></td><td>约16.5cm（全系最长）</td></tr>
+<tr><td><strong>材质</strong></td><td>SafeSkin TPE，偏硬，有淡淡果香</td></tr>
+<tr><td><strong>柔软度</strong></td><td>★★☆☆☆ 偏硬</td></tr>
+<tr><td><strong>出油情况</strong></td><td>★★★★★ 几乎无出油</td></tr>
+<tr><td><strong>气味</strong></td><td>★★★★★ 淡淡果香，无异味</td></tr>
+<tr><td><strong>通道设计</strong></td><td>双子宫设计，内壁遍布大量凸起颗粒，空间局促狭小，吸力极强。"刮得过瘾"般的生猛体验，排空气法后紧致感暴增</td></tr>
+<tr><td><strong>刺激度</strong></td><td>★★★★★ R20系列最高</td></tr>
+<tr><td><strong>包裹感</strong></td><td>★★★☆☆ 偏紧致夹击而非包裹</td></tr>
+<tr><td><strong>易清洗度</strong></td><td>★★☆☆☆ 通道长且曲折，清洗困难</td></tr>
+<tr><td><strong>耐用性</strong></td><td>★★★★☆</td></tr>
+</table>
+
+<p><strong>综合评价</strong>：对子哈特最具代表性的产品，2009年发售的开山之作，被誉为"榨汁神器"和"名器界的华山险峰"。一代以极强吸力和高刺激闻名，通道弯曲异形设计带来生猛刮擦感。<strong>仅推荐给追求极限刺激、经验丰富的老玩家。新手慎入，可能导致不适甚至疼痛。</strong></p>
+
+<hr>
+
+<h4>产品二：R20 三代（均衡之选）</h4>
+
+<table>
+<tr><th style="width:120px">项目</th><th>详情</th></tr>
+<tr><td><strong>产品类型</strong></td><td>手持名器</td></tr>
+<tr><td><strong>重量</strong></td><td>约335g</td></tr>
+<tr><td><strong>全长</strong></td><td>约16.5cm</td></tr>
+<tr><td><strong>通道长度</strong></td><td>约14cm</td></tr>
+<tr><td><strong>材质</strong></td><td>TPE，相比一代大幅升级柔软度</td></tr>
+<tr><td><strong>柔软度</strong></td><td>★★★☆☆ 中等</td></tr>
+<tr><td><strong>出油情况</strong></td><td>★★★☆☆ 三款中出油最明显（但仍属正常范围）</td></tr>
+<tr><td><strong>通道设计</strong></td><td>入口肉芽较少，内部甬道崎岖，兼顾一二代特点，层次感丰富</td></tr>
+<tr><td><strong>刺激度</strong></td><td>★★★☆☆ 中等</td></tr>
+<tr><td><strong>包裹感</strong></td><td>★★★★☆ 适中偏厚</td></tr>
+<tr><td><strong>易清洗度</strong></td><td>★★★★☆ 三款中最易清洗</td></tr>
+</table>
+
+<p><strong>综合评价</strong>：在R20系列中定位最均衡的一款，材质柔软度比一代大幅提升，通道既有一代的崎岖又不至于过于刺激。<strong>适合大多数中级玩家，也是从慢玩进阶刺激的过渡之选。</strong></p>
+
+<hr>
+
+<h4>产品三：R20 四代（紧致榨汁·京东TOP1）</h4>
+
+<table>
+<tr><th style="width:120px">项目</th><th>详情</th></tr>
+<tr><td><strong>产品类型</strong></td><td>手持名器</td></tr>
+<tr><td><strong>重量</strong></td><td>约360g</td></tr>
+<tr><td><strong>尺寸</strong></td><td>约165×68mm</td></tr>
+<tr><td><strong>通道长度</strong></td><td>约12.7cm</td></tr>
+<tr><td><strong>材质</strong></td><td>优质TPE，触感细腻真实</td></tr>
+<tr><td><strong>柔软度</strong></td><td>★★☆☆☆ 偏硬（Soft版偏软）</td></tr>
+<tr><td><strong>出油情况</strong></td><td>★★★★★ 出油极少，几乎感觉不到</td></tr>
+<tr><td><strong>气味</strong></td><td>★★★★★ 几乎没有味道</td></tr>
+<tr><td><strong>通道设计</strong></td><td>内部螺纹和凸起设计丰富，通道最窄最紧，吸力极强，防润滑液外流</td></tr>
+<tr><td><strong>刺激度</strong></td><td>★★★★★ 标准版极高 / ★★★★☆ Soft版</td></tr>
+<tr><td><strong>包裹感</strong></td><td>★★★★☆ 紧致夹击感</td></tr>
+<tr><td><strong>易清洗度</strong></td><td>★★★☆☆</td></tr>
+<tr><td><strong>京东好评度</strong></td><td>96%</td></tr>
+</table>
+
+<p><strong>综合评价</strong>：京东日系倒模类目TOP1产品，材质品质和做工在同类产品中处于领先水平。标准版刺激度与一代相当甚至更高，但Soft版大幅降低了硬度，更适合新手。<strong>建议新手选Soft版，老手根据耐受度选择标准版。</strong></p>
+
+<hr>
+
+<h4>产品四：R20 二代（肉厚包裹）</h4>
+
+<table>
+<tr><th style="width:120px">项目</th><th>详情</th></tr>
+<tr><td><strong>产品类型</strong></td><td>手持名器</td></tr>
+<tr><td><strong>重量</strong></td><td>约380g</td></tr>
+<tr><td><strong>全长</strong></td><td>约13.5cm</td></tr>
+<tr><td><strong>通道长度</strong></td><td>约12cm</td></tr>
+<tr><td><strong>材质</strong></td><td>TPE</td></tr>
+<tr><td><strong>柔软度</strong></td><td>★★☆☆☆ 偏硬但肉壁最厚</td></tr>
+<tr><td><strong>出油情况</strong></td><td>★★★★☆ 少许</td></tr>
+<tr><td><strong>通道设计</strong></td><td>入口较小，入口附近密集肉芽，内部空间相对空旷，肉壁厚实</td></tr>
+<tr><td><strong>刺激度</strong></td><td>★☆☆☆☆ 全系最低</td></tr>
+<tr><td><strong>包裹感</strong></td><td>★★★★★ 全系最佳</td></tr>
+<tr><td><strong>综合推荐度</strong></td><td>★★★☆☆</td></tr>
+</table>
+
+<p><strong>综合评价</strong>：R20系列中包裹感最好的型号，肉壁最厚，刺激度为全系最低，适合敏感型新手入门。四款中最短（13.5cm）。目前关注度较低，属于冷门但体验不错的产品。</p>
+
+<hr>
+
+<h4>产品五：天使的包容二代（麦可酱·慢玩柔软）</h4>
+
+<table>
+<tr><th style="width:120px">项目</th><th>详情</th></tr>
+<tr><td><strong>产品类型</strong></td><td>手持名器</td></tr>
+<tr><td><strong>重量</strong></td><td>约287g</td></tr>
+<tr><td><strong>材质</strong></td><td>超Q弹TPE，像"大号QQ糖"般的柔软手感</td></tr>
+<tr><td><strong>柔软度</strong></td><td>★★★★★ 对子哈特全系最软</td></tr>
+<tr><td><strong>出油情况</strong></td><td>★★★★☆</td></tr>
+<tr><td><strong>通道设计</strong></td><td>四段式——蝴蝶入口→五个毛线球状肉球→密集肉褶波浪排列→末端冰淇淋凸起+吮吸口</td></tr>
+<tr><td><strong>刺激度</strong></td><td>★★☆☆☆ 慢玩温柔型</td></tr>
+<tr><td><strong>包裹感</strong></td><td>★★★☆☆ 偏松（部分用户反馈）</td></tr>
+<tr><td><strong>易清洗度</strong></td><td>★★★☆☆</td></tr>
+<tr><td><strong>价格</strong></td><td>约¥310（活动价）</td></tr>
+</table>
+
+<p><strong>综合评价</strong>：对子哈特产品线中最柔软的慢玩系列，通道设计别出心裁，肉褶+肉球+深腔四段层次分明。"炙天使模式"配合加热棒使用体验更佳。但有用户反映整体通道偏松，前段颗粒感不够明显，中段肉球太软导致突破感不足。<strong>适合新手入门和喜欢温柔包裹慢玩的玩家。</strong></p>
+
+<hr>
+
+<h4>产品六：千美初/千美（新手慢玩标杆）</h4>
+
+<table>
+<tr><th style="width:120px">项目</th><th>详情</th></tr>
+<tr><td><strong>产品类型</strong></td><td>手持名器</td></tr>
+<tr><td><strong>版本</strong></td><td>千美初（410g·入门）/ 千美（510g·进阶）</td></tr>
+<tr><td><strong>材质</strong></td><td>优质TPE，抗菌材质升级，中等偏软</td></tr>
+<tr><td><strong>产地</strong></td><td>中国制造（日本对子哈特监制）</td></tr>
+<tr><td><strong>柔软度</strong></td><td>★★★★☆ 中等偏软，弹性好</td></tr>
+<tr><td><strong>出油情况</strong></td><td>★★★★★ 出油极少</td></tr>
+<tr><td><strong>气味</strong></td><td>★★★★★ 几乎无味</td></tr>
+<tr><td><strong>通道设计</strong></td><td>千美初：小肉褶入口→小环突破设计→末端柔软小空腔吸吮；千美：三段渐进式（层次更丰富），均带淡香味</td></tr>
+<tr><td><strong>刺激度</strong></td><td>★★☆☆☆ 慢玩新手向</td></tr>
+<tr><td><strong>包裹感</strong></td><td>★★★☆☆</td></tr>
+<tr><td><strong>性价比</strong></td><td>★★★★★ ¥150-220区间品控最好之一，京东好评96%</td></tr>
+</table>
+
+<p><strong>综合评价</strong>：被多位评测者推荐为<strong>新手入门首选之一</strong>。分千美初（410g）和千美（510g）两个版本，前者更柔软偏入门，后者重量更大、三段层次更丰富偏进阶。中国制造但执行对子哈特日本监制标准，材质通过日本厚生省食品卫生基准检测。出油极少、几乎无味，品控在¥150-220区间非常突出。<strong>适合新手入门和慢玩锻炼，千美初更适合绝对新手，千美适合有基础后进阶。</strong></p>
+
+<hr>
+
+<h4>产品七：G19 系列（子宫突破·慢玩经典）</h4>
+
+<table>
+<tr><th style="width:120px">项目</th><th>详情</th></tr>
+<tr><td><strong>产品类型</strong></td><td>手持名器</td></tr>
+<tr><td><strong>重量</strong></td><td>约337-370g（因代数而异，第八代约370g）</td></tr>
+<tr><td><strong>材质</strong></td><td>TPE，柔软度逐代提升，第八代出油极少</td></tr>
+<tr><td><strong>通道设计</strong></td><td>前端肉粒突起+中段紧缩环（模拟宫颈突破）+尾部宫腔真空吮吸，已更新至第八代</td></tr>
+<tr><td><strong>刺激度</strong></td><td>★★☆☆☆ 中等偏低（第八代中等偏高）</td></tr>
+<tr><td><strong>包裹感</strong></td><td>★★★★☆</td></tr>
+<tr><td><strong>定位</strong></td><td>仿真子宫体验，慢玩向</td></tr>
+</table>
+
+<p><strong>综合评价</strong>：G19是对子哈特以"仿真子宫颈突破+真空吮吸"为核心卖点的慢玩系列，原为"17岁"系列后更名为G19。以模拟宫颈突破感和末端宫腔吸附感闻名，在对子哈特慢玩线中销量仅次于R20系列。目前已更新至第八代（艾琳娜），出油控制更好、材质更软。另外对子哈特还有一条R17"真实黏膜"系列（也已更新至第八代），以遍布通道的极细粒疣模拟真人黏膜触感，与G19定位不同。<strong>适合喜欢子宫突破感和慢玩体验的玩家。</strong></p>
+
+<hr>
+
+<h4>产品八：LC2 恋爱物语系列（性价比入门·学生党）</h4>
+
+<table>
+<tr><th style="width:120px">项目</th><th>详情</th></tr>
+<tr><td><strong>产品类型</strong></td><td>手持名器（迷你）</td></tr>
+<tr><td><strong>重量</strong></td><td>约174-184g（因角色而异）</td></tr>
+<tr><td><strong>全长</strong></td><td>约100mm</td></tr>
+<tr><td><strong>内部通道长</strong></td><td>约65-85mm（因角色而异）</td></tr>
+<tr><td><strong>材质</strong></td><td>TPE，Q弹爽滑，几乎无气味、不出油</td></tr>
+<tr><td><strong>柔软度</strong></td><td>★★★☆☆</td></tr>
+<tr><td><strong>通道设计</strong></td><td>非贯通，各角色通道不同（环形螺纹/层层突破/颗粒刺激/条状纹理）</td></tr>
+<tr><td><strong>刺激度</strong></td><td>★★★☆☆ 中等</td></tr>
+<tr><td><strong>便携性</strong></td><td>★★★★★ 体积小巧</td></tr>
+<tr><td><strong>价格</strong></td><td>约¥90-120</td></tr>
+<tr><td><strong>代表角色</strong></td><td>出水和琴（175g）、成川姬（184g）、韮崎日向（184g）、吉野谷星音（174g）</td></tr>
+</table>
+
+<p><strong>综合评价</strong>：百元出头的日系正品，性价比高。基于Galgame《恋爱物语2》的四位女主角设计，材质Q弹几乎无味无油。体积小巧适合宿舍和差旅场景，但通道偏短（最长仅85mm），不太适合作为主力使用。<strong>适合预算有限的学生党、差旅便携需求和作为调剂口味的"小点心"。</strong></p>
+
+<hr>
+
+<h4>产品九：无言的女孩（极致刺激巅峰）</h4>
+
+<table>
+<tr><th style="width:120px">项目</th><th>详情</th></tr>
+<tr><td><strong>产品类型</strong></td><td>手持名器</td></tr>
+<tr><td><strong>材质</strong></td><td>TPE，偏硬</td></tr>
+<tr><td><strong>柔软度</strong></td><td>★☆☆☆☆ 硬</td></tr>
+<tr><td><strong>通道设计</strong></td><td>基于R20衍生的异形通道，对子哈特全系最高刺激度</td></tr>
+<tr><td><strong>刺激度</strong></td><td>★★★★★ 全系最高</td></tr>
+<tr><td><strong>价格</strong></td><td>约¥400</td></tr>
+<tr><td><strong>适合人群</strong></td><td>极限刺激追求者</td></tr>
+</table>
+
+<p><strong>综合评价</strong>：基于R20系列衍生但刺激度超越R20一代的极致产品。<strong>仅推荐给追求极限刺激、对R20一代已经适应的核心玩家。新手绝对不要碰。</strong></p>
+
+<hr>
+
+<h4>产品十：美乳妻 进化版（大型半身·旗舰）</h4>
+
+<table>
+<tr><th style="width:120px">项目</th><th>详情</th></tr>
+<tr><td><strong>产品类型</strong></td><td>大型半身</td></tr>
+<tr><td><strong>重量</strong></td><td>11.1kg（约22斤）</td></tr>
+<tr><td><strong>材质</strong></td><td>TPE，F杯超软水球感欧派</td></tr>
+<tr><td><strong>柔软度</strong></td><td>★★★★★ 欧派极软</td></tr>
+<tr><td><strong>通道设计</strong></td><td>仿真通道，内置可调骨架</td></tr>
+<tr><td><strong>刺激度</strong></td><td>★★★☆☆</td></tr>
+<tr><td><strong>包裹感</strong></td><td>★★★★★ 半身带来的沉浸感无可比拟</td></tr>
+<tr><td><strong>易清洗度</strong></td><td>★☆☆☆☆ 11kg极重，"清洗是妥妥的健身器材"</td></tr>
+<tr><td><strong>体验评分</strong></td><td>5/5（来自什么值得买测评）</td></tr>
+</table>
+
+<p><strong>综合评价</strong>：对子哈特的旗舰级半身产品。F杯超大欧派有超软水球感，内置可调骨架可改变姿势。体验评分满分。但11.1kg的重量让清洗成为真正意义上的体力活。<strong>适合预算充足、有独立空间、愿意为极致体验买单的深度玩家。</strong></p>
+
+<hr>
+
+<h3>2.3 对子哈特品牌总结</h3>
+
+<table>
+<tr><th>维度</th><th>评价</th></tr>
+<tr><td><strong>材质品质</strong></td><td>★★★★★ 日本制TPE，出油少、气味控制好</td></tr>
+<tr><td><strong>品控稳定性</strong></td><td>★★★★☆ 大品牌品控好，但偶有做工粗糙反馈</td></tr>
+<tr><td><strong>刺激度范围</strong></td><td>从极温柔(千美)到极刺激(无言的女孩)，覆盖面广</td></tr>
+<tr><td><strong>包装设计</strong></td><td>★★★★☆ 二次元动漫风格，但不如KAGUYANO精良</td></tr>
+<tr><td><strong>性价比</strong></td><td>★★★★☆ 入门款LC2仅¥90+，高端款品质对得起价格</td></tr>
+<tr><td><strong>新手友好度</strong></td><td>★★★★☆ 有明确的新手产品线（千美、G19、天使的包容）</td></tr>
+</table>
+
+<hr>
+
+<h2>三、竞品品牌产品测评</h2>
+
+<h3>3.1 TOMAX 大魔王 Venus Real Rich Soft（日本·慢玩天花板）</h3>
+
+<table>
+<tr><th style="width:120px">项目</th><th>详情</th></tr>
+<tr><td><strong>品牌</strong></td><td>TOMAX（通贩大魔王）</td></tr>
+<tr><td><strong>产地</strong></td><td>日本·少数真正日本本土手工生产</td></tr>
+<tr><td><strong>重量</strong></td><td>约650g</td></tr>
+<tr><td><strong>材质</strong></td><td>Rich Soft级别超软TPE，低回弹设计</td></tr>
+<tr><td><strong>柔软度</strong></td><td>★★★★★ 极致柔软，"像摸自己的赘肉/屁股蛋"</td></tr>
+<tr><td><strong>出油情况</strong></td><td>★★★★★ 在这个柔软度下出油极少，材质工艺出众</td></tr>
+<tr><td><strong>气味</strong></td><td>★★★★★ 几乎没有味道</td></tr>
+<tr><td><strong>通道设计</strong></td><td>Venus Real通道约13cm，仿真粘膜褶皱纹理，包裹感而非箍紧感——四面八方被温柔握住，无压迫感。快感是层层叠加而非瞬间刺激</td></tr>
+<tr><td><strong>刺激度</strong></td><td>★☆☆☆☆ 极致慢玩</td></tr>
+<tr><td><strong>包裹感</strong></td><td>★★★★★ 650g+柔软材质=极强包裹</td></tr>
+<tr><td><strong>价格</strong></td><td>日本本土约¥300-400，国内正品渠道约¥380-460</td></tr>
+<tr><td><strong>耐用性</strong></td><td>★★★☆☆ 娇弱，不可翻洗，需小心保养</td></tr>
+</table>
+
+<p><strong>综合评价</strong>：业内公认的慢玩天花板，"世界上只有两种飞机杯，一种是大魔王，一种是其他"。Rich Soft级别的低回弹材质带来无与伦比的柔软包裹感，且出油控制在同一柔软度下几乎无人能敌。爆发时从根部到头部被细细温柔包裹，射后无不适。缺点是材质娇弱（官方明确提示不可翻洗）、价格偏高、国内仿冒品众多需认准正品。</p>
+
+<hr>
+
+<h3>3.2 TENGA 系列（日本·科技与设计标杆）</h3>
+
+<h4>FLIP ZERO GRAVITY（2024-2025主力）</h4>
+
+<table>
+<tr><th style="width:120px">项目</th><th>详情</th></tr>
+<tr><td><strong>类型</strong></td><td>翻盖式可重复使用</td></tr>
+<tr><td><strong>材质</strong></td><td>日本限定高级弹性体</td></tr>
+<tr><td><strong>柔软度</strong></td><td>White版柔软 / Black版偏硬</td></tr>
+<tr><td><strong>通道设计</strong></td><td>White：螺旋纹+波浪双重门+末端双翼包裹；Black：矩形腔+三角高墙+末端球形凸起+网状刺激</td></tr>
+<tr><td><strong>刺激度</strong></td><td>White中 / Black高</td></tr>
+<tr><td><strong>特点</strong></td><td>翻盖设计易清洗、压力Pads控制真空吸力、"零空隙"密集纹理设计</td></tr>
+<tr><td><strong>价格</strong></td><td>约¥400-550</td></tr>
+</table>
+
+<h4>SPINNER DX（2025新品·旋转刺激）</h4>
+
+<table>
+<tr><th style="width:120px">项目</th><th>详情</th></tr>
+<tr><td><strong>类型</strong></td><td>螺旋旋转杯</td></tr>
+<tr><td><strong>材质</strong></td><td>升级加厚弹性体</td></tr>
+<tr><td><strong>通道设计</strong></td><td>内部螺旋线圈，每次插入时杯子自动扭转，产生旋转刺激。三款：DROPS(水滴)、BUMPS(凸点)、STEPS(阶梯)</td></tr>
+<tr><td><strong>刺激度</strong></td><td>中~高（因型号而异）</td></tr>
+<tr><td><strong>特点</strong></td><td>比原版SPINNER体积更大、材质更厚、兼容性更好</td></tr>
+<tr><td><strong>价格</strong></td><td>约¥150-300</td></tr>
+</table>
+
+<h4>FLIP ZERO EVR（2025年9月旗舰）</h4>
+
+<p>内置震动+旋转二合一，带陀螺仪传感器可感应倾斜角度改变旋转方向。TENGA迄今为止最高端产品，价格¥600-800+。</p>
+
+<p><strong>TENGA品牌特点</strong>：</p>
+<ul>
+  <li>设计感和科技属性最强</li>
+  <li>翻盖设计清洗最方便</li>
+  <li>只能用<strong>水基润滑液</strong></li>
+  <li>White=柔软/标准，Black=更硬/更强刺激（通用配色规则）</li>
+</ul>
+
+<hr>
+
+<h3>3.3 NPG 名器证明系列（日本·女优倒模标杆）</h3>
+
+<h4>003YS 二代（淫熟·慢玩经典）</h4>
+
+<table>
+<tr><th style="width:120px">项目</th><th>详情</th></tr>
+<tr><td><strong>重量</strong></td><td>约600g</td></tr>
+<tr><td><strong>材质</strong></td><td>极柔软TPE（与CORON2同级），高弹力</td></tr>
+<tr><td><strong>柔软度</strong></td><td>★★★★★ 极其柔软糯弹</td></tr>
+<tr><td><strong>出油情况</strong></td><td>★★☆☆☆ 出油较多（NPG通病）</td></tr>
+<tr><td><strong>气味</strong></td><td>★★★☆☆ 气味较重</td></tr>
+<tr><td><strong>通道设计</strong></td><td>简单直接，无太多曲折，遍布颗粒和吸盘，两条蜿蜒肉筋在同一侧。翻转机体可改变体验（肉筋侧vs平滑侧）</td></tr>
+<tr><td><strong>刺激度</strong></td><td>★★☆☆☆ 慢玩温柔</td></tr>
+<tr><td><strong>包裹感</strong></td><td>★★★★★ 极强</td></tr>
+<tr><td><strong>耐用性</strong></td><td>★★☆☆☆ 易变硬（有用户反映用三次就变硬）</td></tr>
+</table>
+
+<p><strong>综合评价</strong>：NPG经典慢玩款，畅销十余年。体验感接近真人，"使用体验就是醇熟"。但出油多、气味重、耐久差是硬伤。被誉为"熟女人妻"定位——体验温柔但需要耐心保养。</p>
+
+<h4>012 深田咏美（中高刺激·层破设计）</h4>
+
+<table>
+<tr><th style="width:120px">项目</th><th>详情</th></tr>
+<tr><td><strong>重量</strong></td><td>约600g</td></tr>
+<tr><td><strong>材质</strong></td><td>双层TPE（外软内更软）</td></tr>
+<tr><td><strong>柔软度</strong></td><td>★★★★☆ 外软内更软</td></tr>
+<tr><td><strong>出油情况</strong></td><td>★★☆☆☆ 偏多</td></tr>
+<tr><td><strong>通道设计</strong></td><td>前半段多层连续突破口→后半段变紧+大肉粒+纹理，无子宫</td></tr>
+<tr><td><strong>刺激度</strong></td><td>★★★★☆ 中高</td></tr>
+<tr><td><strong>包裹感</strong></td><td>★★★★☆</td></tr>
+</table>
+
+<p><strong>综合评价</strong>："突破口"设计是核心特色，一层层挂过去的感觉非常强烈。器身软到有些失真但实际体验并不会"日空气"。每次结束后"毫不犹豫二番战"。<strong>适合喜欢层层突破感和强力吸啜的玩家。</strong></p>
+
+<h4>014 明里紬 / 015 石川澪</h4>
+
+<table>
+<tr><th>产品</th><th>重量</th><th>通道特点</th><th>刺激度</th><th>适合</th></tr>
+<tr><td>014 明里紬</td><td>约650g</td><td>复杂多变，实际偏温柔</td><td>★★☆☆☆</td><td>新手/粉丝收藏</td></tr>
+<tr><td>015 石川澪</td><td>约650g</td><td>双层软胶+巨大起伏+蛇形拨片感肉粒</td><td>★★☆☆☆</td><td>慢玩/软胶爱好者</td></tr>
+</table>
+
+<hr>
+
+<h3>3.4 Magic Eyes 处女宫系列（日本·突破感特化）</h3>
+
+<h4>Lolinco 纯洁新娘（经典款）</h4>
+
+<table>
+<tr><th style="width:120px">项目</th><th>详情</th></tr>
+<tr><td><strong>重量</strong></td><td>450g</td></tr>
+<tr><td><strong>材质</strong></td><td>Ag+银离子抗菌TPE，记忆回弹技术</td></tr>
+<tr><td><strong>柔软度</strong></td><td>★★★☆☆（另有SOFT软版）</td></tr>
+<tr><td><strong>通道设计</strong></td><td>环状纯洁膜（记忆回弹，可重复使用）+多层"门"结构+末端子宫口(Balugo)</td></tr>
+<tr><td><strong>刺激度</strong></td><td>★★★★☆</td></tr>
+<tr><td><strong>包裹感</strong></td><td>★★★★☆ 紧致</td></tr>
+<tr><td><strong>清洁难度</strong></td><td>★★☆☆☆ 入口极窄，通道14cm紧且长，不易彻底清洁</td></tr>
+</table>
+
+<p><strong>综合评价</strong>：以"处女膜突破感"为核心卖点，环状纯洁膜的记忆回弹技术是招牌。但品控问题较多（脱模、黑异物、内部层分离），且清洗困难。国内旗舰店折扣较大，代购正常价约¥250左右。</p>
+
+<p>另外还有<strong>极彩EX版</strong>（660g，巨型子宫口+超厚纯洁膜）和<strong>SATORI觉悟半身</strong>（1200g，微乳胴体设计）。</p>
+
+<hr>
+
+<h3>3.5 RIDE JAPAN 天下一穴系列（日本·反差刺激）</h3>
+
+<table>
+<tr><th>型号</th><th>重量</th><th>特点</th></tr>
+<tr><td><strong>天下一穴初代</strong></td><td>400g</td><td>双层结构，大型肉纹凸粒+小颗粒肉柱+子宫口，新手入门经典</td></tr>
+<tr><td><strong>紧压变化（二代）</strong></td><td>465g</td><td>外软内硬，360°全方位刺激，螺旋肉纹+激凸肉块，压迫感极强</td></tr>
+<tr><td><strong>刚柔二层（三代）</strong></td><td>390g</td><td>前段柔软宽阔→中段激硬横纹，"天堂到地狱"的极致反差</td></tr>
+<tr><td><strong>弹性触碰（四弹）</strong></td><td>400g</td><td>高伸缩弹力素材，波浪通道+巨大肉块+CQ子宫</td></tr>
+<tr><td><strong>八重螺旋之处女</strong></td><td>370g</td><td>0.8mm纤细肉柱×8重纵螺旋，"ゾリゾリ系最强"</td></tr>
+<tr><td><strong>蝴蝶螺旋</strong></td><td>—</td><td>强刺激剐蹭型，通道单一但刺激爆棚</td></tr>
+</table>
+
+<p><strong>品牌特点</strong>：以"天下一穴"为核心IP迭代多代，通道变化丰富。价格适中，通道设计富有创意。缺点是部分产品通道单一易麻木。</p>
+
+<hr>
+
+<h3>3.6 EXE / G-Project（日本·多样化）</h3>
+
+<table>
+<tr><th>产品</th><th>重量</th><th>特点</th></tr>
+<tr><td><strong>EXE 对魔忍 水城不知火</strong></td><td>630g</td><td>螺旋肉脊+三段式通道(前刺激→中夹吸→尾子宫榨汁)，二次元高刺激</td></tr>
+<tr><td><strong>PUNI VIRGIN 3200</strong></td><td>3.2kg</td><td>双穴超大型，前软后硬结构，阴道16cm/后庭15cm</td></tr>
+<tr><td><strong>PUNI VIRGIN Excite</strong></td><td>380g</td><td>超强握力+粗肋纹内壁，适合快速冲刺，但润滑液消耗快</td></tr>
+<tr><td><strong>GOKU-TAMA VIRGIN SOFT</strong></td><td>—</td><td>极致柔肌感，"零摩擦零刺激"，追求真实通道体验</td></tr>
+</table>
+
+<hr>
+
+<h3>3.7 国产新锐品牌</h3>
+
+<h4>HMAX 纯情乙女（慢玩·材质标杆）</h4>
+
+<table>
+<tr><th style="width:120px">项目</th><th>详情</th></tr>
+<tr><td><strong>重量</strong></td><td>690g</td></tr>
+<tr><td><strong>材质</strong></td><td>优质TPE，突出特点：出油极少、淡奶香味</td></tr>
+<tr><td><strong>柔软度</strong></td><td>★★★★★ 9.2/10</td></tr>
+<tr><td><strong>通道</strong></td><td>三段式多褶皱+强吸力</td></tr>
+<tr><td><strong>刺激度</strong></td><td>★☆☆☆☆ 慢玩</td></tr>
+<tr><td><strong>价格</strong></td><td>¥150-180</td></tr>
+<tr><td><strong>综合评价</strong></td><td>2025年什么值得买157条评价中排名第一，柔软度顶级却做到了出色的出油控制。</td></tr>
+</table>
+
+<hr>
+
+<h4>Lovefactor 御神子（新手万金油）</h4>
+
+<table>
+<tr><th style="width:120px">项目</th><th>详情</th></tr>
+<tr><td><strong>重量</strong></td><td>660g</td></tr>
+<tr><td><strong>材质</strong></td><td>适中TPE</td></tr>
+<tr><td><strong>柔软度</strong></td><td>★★★★☆ 9.2/10</td></tr>
+<tr><td><strong>出油</strong></td><td>★★★★☆ 少且耐用</td></tr>
+<tr><td><strong>通道</strong></td><td>双层入口+曲折颗粒+横纹收口</td></tr>
+<tr><td><strong>刺激度</strong></td><td>★★☆☆☆ 慢玩适中</td></tr>
+<tr><td><strong>价格</strong></td><td>¥100-200</td></tr>
+<tr><td><strong>综合评价</strong></td><td>"中庸万金油"，适配80%人群，通道曲折度提供恰到好处的刺激。新手最稳妥的选择之一。</td></tr>
+</table>
+
+<hr>
+
+<h4>RQS 约束快感三代（包裹王者）</h4>
+
+<table>
+<tr><th style="width:120px">项目</th><th>详情</th></tr>
+<tr><td><strong>重量</strong></td><td>820g</td></tr>
+<tr><td><strong>材质</strong></td><td>极软TPE</td></tr>
+<tr><td><strong>柔软度</strong></td><td>★★★★★ 9.2/10</td></tr>
+<tr><td><strong>通道</strong></td><td>仿真肉褶皱+两段突破环</td></tr>
+<tr><td><strong>刺激度</strong></td><td>★☆☆☆☆</td></tr>
+<tr><td><strong>价格</strong></td><td>¥100-200</td></tr>
+<tr><td><strong>综合评价</strong></td><td>820g大克重带来的包裹感在慢玩杯中是王者级别，外形仿真度高，层层递进"慢玩但不无感"。</td></tr>
+</table>
+
+<hr>
+
+<h4>GXP 白丝壁女3代 / 格蕾丝二代</h4>
+
+<table>
+<tr><th>产品</th><th>刺激度</th><th>特点</th></tr>
+<tr><td>白丝壁女3代</td><td>中偏低</td><td>螺旋通道，刺激感偏弱</td></tr>
+<tr><td>格蕾丝二代</td><td>极高</td><td>"国道半挂级"夹挤力，仅适合老玩家</td></tr>
+</table>
+
+<hr>
+
+<h2>四、电商平台用户评价汇总</h2>
+
+<h3>4.1 对子哈特京东评价</h3>
+
+<p><strong>正面高频关键词</strong>：</p>
+<ul>
+  <li>R20四代："材质好""手感好""性价比高""物流快""很软"</li>
+  <li>天使的包容："柔软""舒服""包裹感"</li>
+  <li>整体好评率：R20四代京东好评96%</li>
+</ul>
+
+<p><strong>负面高频关键词</strong>：</p>
+<ul>
+  <li>"材质偏硬，和预期不一样"（多见于未区分Soft版的新手）</li>
+  <li>"气味比较大"（"性徒会长"款，用户称"闻着像回收废料再利用"）</li>
+  <li>"外观有毛边/掉皮"（个别品控问题）</li>
+  <li>"久置不用会变硬"（R20三代、巴布密着均有反馈）</li>
+</ul>
+
+<h3>4.2 KAGUYANO 论坛/微博评价</h3>
+
+<p><strong>正面高频关键词</strong>：</p>
+<ul>
+  <li>"包装用心""二次元沉浸感强""布丁款Q弹""臀浪好"</li>
+  <li>"姬骑士比大魔王还好，挺推荐"</li>
+</ul>
+
+<p><strong>负面高频关键词</strong>：</p>
+<ul>
+  <li>"价格偏贵配不上""品控不稳定""清洗麻烦"</li>
+  <li>"圈二次元钱""代工品质有波动""腿模关节松"</li>
+  <li>"清洗麻烦""材质不耐刮"</li>
+</ul>
+
+<h3>4.3 NPG 京东/论坛评价</h3>
+
+<ul>
+  <li>好评：包裹感强、慢玩舒服、接近真人</li>
+  <li>差评：出油量大、气味重、易变硬、需频繁保养</li>
+</ul>
+
+<h3>4.4 TOMAX大魔王 论坛评价</h3>
+
+<ul>
+  <li>好评率极高，"名不虚传""用过大魔王就回不去了"</li>
+  <li>差评集中于Rich Soft："太软了像日空气"（不敏感人群）</li>
+  <li>最大痛点是价格（国内400+）和仿冒品泛滥</li>
+</ul>
+
+<hr>
+
+<h2>五、横向对比总结</h2>
+
+<h3>5.1 品牌综合实力对比</h3>
+
+<table>
+<tr><th>品牌</th><th>材质品质</th><th>品控稳定</th><th>创新性</th><th>性价比</th><th>新手友好</th><th>综合评分</th></tr>
+<tr><td><strong>TOMAX大魔王</strong></td><td>★★★★★</td><td>★★★★★</td><td>★★★★☆</td><td>★★★☆☆</td><td>★★★★★</td><td>9.5</td></tr>
+<tr><td><strong>对子哈特</strong></td><td>★★★★★</td><td>★★★★☆</td><td>★★★★☆</td><td>★★★★☆</td><td>★★★★☆</td><td>9.0</td></tr>
+<tr><td><strong>TENGA</strong></td><td>★★★★★</td><td>★★★★★</td><td>★★★★★</td><td>★★★☆☆</td><td>★★★★☆</td><td>9.0</td></tr>
+<tr><td><strong>NPG</strong></td><td>★★★★☆</td><td>★★★☆☆</td><td>★★★☆☆</td><td>★★★★☆</td><td>★★★★☆</td><td>7.5</td></tr>
+<tr><td><strong>KAGUYANO</strong></td><td>★★★★☆</td><td>★★★☆☆</td><td>★★★★☆</td><td>★★★☆☆</td><td>★★★☆☆</td><td>7.5</td></tr>
+<tr><td><strong>Magic Eyes</strong></td><td>★★★★☆</td><td>★★☆☆☆</td><td>★★★★☆</td><td>★★★★☆</td><td>★★★☆☆</td><td>7.0</td></tr>
+<tr><td><strong>HMAX</strong></td><td>★★★★☆</td><td>★★★★☆</td><td>★★★☆☆</td><td>★★★★★</td><td>★★★★★</td><td>8.0</td></tr>
+<tr><td><strong>Lovefactor</strong></td><td>★★★★☆</td><td>★★★★☆</td><td>★★★☆☆</td><td>★★★★★</td><td>★★★★★</td><td>8.0</td></tr>
+<tr><td><strong>RIDE JAPAN</strong></td><td>★★★★☆</td><td>★★★★☆</td><td>★★★★☆</td><td>★★★★☆</td><td>★★★☆☆</td><td>7.5</td></tr>
+</table>
+
+<h3>5.2 柔软度排名（从软到硬）</h3>
+
+<ol>
+  <li>TOMAX Venus Real Rich Soft / KAGUYANO 油醋汁 —— 极致柔软</li>
+  <li>Magic Eyes 处女宫 SOFT / 对子哈特 天使的包容 —— 非常柔软</li>
+  <li>HMAX 纯情乙女 / RQS 约束三代 / KAGUYANO 蜂蜜芥末 —— 高柔软</li>
+  <li>NPG 003 / Lovefactor 御神子 —— 中高柔软</li>
+  <li>对子哈特 R20三代 / KAGUYANO 南宫璃音 —— 中等</li>
+  <li>对子哈特 R20四代 / EXE 对魔忍 —— 偏硬</li>
+  <li>对子哈特 R20一代 / 无言的女孩 —— 很硬</li>
+</ol>
+
+<h3>5.3 出油控制排名（从好到差）</h3>
+
+<ol>
+  <li>对子哈特 R20四代/一代 / TOMAX大魔王 —— 几乎无油</li>
+  <li>HMAX 纯情乙女 / 对子哈特 千美 —— 极少</li>
+  <li>KAGUYANO 蜂蜜芥末/碧 / Lovefactor 御神子 —— 较少</li>
+  <li>NPG 003/012 —— 偏多</li>
+  <li>KAGUYANO 油醋汁 —— 中等偏上</li>
+</ol>
+
+<h3>5.4 刺激度定位图谱</h3>
+
+<pre>慢玩/低刺激 ←——————————————————————————————→ 高刺激/榨汁
+TOMAX RS  003  天使包容  千美  御神子  R20三代  NPG012  处女宫  菲亚帕帕  R20一代  无言
+   |        |      |      |      |        |       |       |       |        |       |
+ 极致软    软     软     软    适中     适中    中高    高    很高    极高    极强</pre>
+
+<hr>
+
+<h2>六、选购建议</h2>
+
+<h3>6.1 按预算推荐</h3>
+
+<table>
+<tr><th>预算</th><th>手动杯推荐</th><th>大型产品推荐</th></tr>
+<tr><td>¥50-100</td><td>杯多多七彩罐娘、对子哈特LC2</td><td>—</td></tr>
+<tr><td>¥100-200</td><td>HMAX纯情乙女、Lovefactor御神子、对子哈特千美初</td><td>—</td></tr>
+<tr><td>¥200-300</td><td>对子哈特R20三代/四代Soft、NPG 003</td><td>—</td></tr>
+<tr><td>¥300-500</td><td>TOMAX大魔王(日购)、TENGA FLIP ZERO、NPG 012</td><td>KAGUYANO番茄酱</td></tr>
+<tr><td>¥500-1000</td><td>TENGA FLIP ZERO EV</td><td>KAGUYANO蜂蜜芥末</td></tr>
+<tr><td>¥1000+</td><td>—</td><td>对子哈特美乳妻、KAGUYANO游悠悠/碧</td></tr>
+</table>
+
+<h3>6.2 按需求推荐</h3>
+
+<table>
+<tr><th>需求</th><th>首选</th><th>备选</th></tr>
+<tr><td><strong>新手入门</strong></td><td>Lovefactor御神子（¥150）/ HMAX纯情乙女（¥170）</td><td>对子哈特千美初（¥180）</td></tr>
+<tr><td><strong>慢玩延时锻炼</strong></td><td>TOMAX大魔王Real Rich Soft（¥400）</td><td>HMAX纯情乙女 / RQS约束三代</td></tr>
+<tr><td><strong>适中均衡</strong></td><td>对子哈特R20三代（¥230）</td><td>KAGUYANO马克希亚</td></tr>
+<tr><td><strong>高刺激榨汁</strong></td><td>对子哈特R20一代/四代（¥230-280）</td><td>对子哈特无言的女孩（¥400）</td></tr>
+<tr><td><strong>臀模体验</strong></td><td>KAGUYANO蜂蜜芥末（2.6kg）</td><td>KAGUYANO番茄酱（1.6kg轻量）</td></tr>
+<tr><td><strong>半身沉浸</strong></td><td>KAGUYANO碧（18.4kg·可动）</td><td>对子哈特美乳妻（11kg）</td></tr>
+<tr><td><strong>便携差旅</strong></td><td>对子哈特LC2 / 杯多多七彩罐娘</td><td>TENGA SPINNER</td></tr>
+<tr><td><strong>科技电动</strong></td><td>TENGA FLIP ZERO EVR</td><td>杰士邦AI海豚</td></tr>
+<tr><td><strong>二次元收藏</strong></td><td>KAGUYANO南宫璃音（存量少）</td><td>EXE对魔忍水城不知火</td></tr>
+</table>
+
+<h3>6.3 避坑指南</h3>
+
+<ol>
+  <li><strong>新手不要直接上高刺激款</strong>：R20一代、菲亚帕帕、无言的女孩这类产品可能导致不适甚至疼痛。建议从慢玩款/适中款开始。</li>
+  <li><strong>购买前确认版本</strong>：对子哈特R20四代有标准版和Soft版，KAGUYANO有布丁款和倔强款，柔软度差异巨大。</li>
+  <li><strong>正规渠道购买</strong>：对子哈特和TOMAX市面仿冒品很多，认准京东自营/天猫旗舰店/授权经销商。</li>
+  <li><strong>接受TPE会出油</strong>：这是材质特性，可通过定期拍玉米淀粉/保护粉缓解。对出油零容忍的请选对子哈特或TOMAX。</li>
+  <li><strong>大型产品慎重考虑</strong>：臀模/半身的清洗维护是真正的体力活，确保有独立空间和足够的耐心。</li>
+  <li><strong>手动杯优于电动杯入门</strong>：电动功能多为噱头，手动操控更自然，先建立基础体验感再考虑电动。</li>
+</ol>
+
+<hr>
+
+<blockquote><strong>免责声明</strong>：本报告所有信息均来源于网络公开评测、电商评论及论坛讨论，仅供参考。产品的实际体验因个人敏感度、使用方式、保养情况等因素存在较大个体差异。购买前请结合自身情况判断，并通过正规渠道购买以确保材质安全。</blockquote>
+
+</div>
+</section>
+
+<footer>© 2026 钟钦阳 · KAGUYANO求职作品集 · 深度测评报告</footer>
+</body>
+</html>

@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>原创设计提案：梅酒 · 作品集</title>
+<style>
+  :root{
+    --bg-deep:#06050f;--bg-card:rgba(20,16,45,0.5);--text-primary:#ece6f5;
+    --text-secondary:#b8a8d4;--text-muted:#7a6e95;--accent-purple:#9b7fd4;
+    --accent-amber:#d4a574;--glass-border:rgba(140,110,210,0.12);
+    --radius:16px;--max-w:820px
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:'PingFang SC','Microsoft YaHei','Hiragino Sans GB',system-ui,sans-serif;
+    background:var(--bg-deep);color:var(--text-primary);line-height:1.8;
+    -webkit-font-smoothing:antialiased;
+  }
+  body::before{
+    content:'';position:fixed;top:0;left:0;width:100%;height:100%;
+    background:radial-gradient(ellipse at 70% 10%,rgba(120,80,200,0.05),transparent 45%),
+               radial-gradient(ellipse at 30% 65%,rgba(200,150,100,0.03),transparent 40%);
+    pointer-events:none;z-index:0;
+  }
+  .container{max-width:var(--max-w);margin:0 auto;padding:0 28px;position:relative;z-index:1}
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(8,6,20,0.78);backdrop-filter:blur(20px);
+    border-bottom:1px solid var(--glass-border);padding:0 28px;
+  }
+  .nav-inner{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:56px}
+  .nav-back{color:var(--accent-purple);text-decoration:none;font-size:0.88rem;letter-spacing:1px;transition:0.2s}
+  .nav-back:hover{color:var(--text-primary)}
+  .nav-title{font-size:0.82rem;color:var(--text-muted)}
+
+  header{
+    padding:64px 0 44px;text-align:center;
+    background:linear-gradient(170deg,rgba(80,50,130,0.06),rgba(20,12,40,0.03));
+  }
+  header .cover{font-size:4.5rem;margin-bottom:14px}
+  header h1{font-size:2rem;font-weight:700;letter-spacing:4px;margin-bottom:6px}
+  header .subtitle{color:var(--text-muted);font-size:0.9rem;letter-spacing:2px}
+  header .tags{display:flex;justify-content:center;gap:10px;margin-top:20px;flex-wrap:wrap}
+  header .tags span{
+    font-size:0.7rem;padding:4px 12px;border-radius:20px;
+    background:rgba(120,100,200,0.1);color:var(--accent-purple);letter-spacing:1px;
+  }
+
+  section{padding:44px 0}
+  section h2{
+    font-size:1.25rem;font-weight:600;letter-spacing:3px;
+    margin-bottom:18px;color:var(--accent-amber);
+    padding-bottom:8px;border-bottom:1px solid var(--glass-border);
+  }
+  section h3{font-size:1.05rem;font-weight:500;color:var(--text-primary);margin:28px 0 12px}
+  section h4{font-size:0.95rem;font-weight:500;color:var(--accent-purple);margin:20px 0 8px}
+  section p{font-size:0.9rem;color:var(--text-secondary);margin-bottom:12px;line-height:1.95}
+  section ul,section ol{padding-left:24px;margin-bottom:16px}
+  section li{font-size:0.88rem;color:var(--text-secondary);margin-bottom:6px;line-height:1.75}
+  table{width:100%;border-collapse:collapse;margin:16px 0;font-size:0.83rem}
+  th,td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--glass-border)}
+  th{color:var(--accent-amber);font-weight:500;font-size:0.78rem;letter-spacing:1px;white-space:nowrap}
+  td{color:var(--text-secondary)}
+  blockquote{
+    border-left:2px solid var(--accent-purple);padding:8px 16px;
+    margin:16px 0;color:var(--text-muted);font-style:italic;font-size:0.88rem;
+  }
+  hr{border:none;border-top:1px solid var(--glass-border);margin:40px 0}
+  pre{
+    background:rgba(0,0,0,0.25);padding:20px;border-radius:var(--radius);
+    overflow-x:auto;font-size:0.8rem;color:var(--text-secondary);line-height:1.5;
+  }
+
+  /* ---- 通道结构图 ---- */
+  .channel-diagram{
+    background:rgba(10,8,30,0.6);border:1px solid var(--glass-border);
+    border-radius:var(--radius);padding:32px 24px;margin:24px 0;
+    overflow-x:auto;
+  }
+  .channel-diagram h4{
+    text-align:center;color:var(--accent-amber);margin-bottom:20px;font-size:0.9rem;letter-spacing:2px;
+  }
+  .channel-bar{
+    display:flex;align-items:stretch;justify-content:center;gap:0;
+    min-width:600px;margin:0 auto;position:relative;
+  }
+  .channel-phase{
+    flex:1;padding:22px 14px;text-align:center;
+    border:1px solid rgba(140,110,210,0.2);
+    position:relative;transition:0.3s;
+  }
+  .channel-phase:first-child{border-radius:12px 0 0 12px}
+  .channel-phase:last-child{border-radius:0 12px 12px 0}
+  .channel-phase:hover{
+    background:rgba(120,90,180,0.08);border-color:var(--accent-purple);z-index:2;
+  }
+  .channel-phase .phase-name{
+    font-size:1rem;font-weight:600;color:var(--text-primary);margin-bottom:6px;letter-spacing:1px;
+  }
+  .channel-phase .phase-range{
+    font-size:0.7rem;color:var(--accent-purple);margin-bottom:8px;letter-spacing:1px;
+  }
+  .channel-phase .phase-desc{
+    font-size:0.76rem;color:var(--text-secondary);line-height:1.6;
+  }
+  .channel-phase .phase-icon{font-size:1.5rem;margin-bottom:6px}
+  .channel-arrow{
+    display:flex;align-items:center;color:var(--accent-purple);
+    font-size:1.2rem;padding:0 2px;
+  }
+
+  /* 通道截面示意 */
+  .channel-cross{
+    display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin:24px 0;
+  }
+  .cross-item{
+    text-align:center;background:rgba(20,16,45,0.4);
+    border:1px solid var(--glass-border);border-radius:var(--radius);
+    padding:20px;width:160px;
+  }
+  .cross-item .cross-svg{width:80px;height:80px;margin:0 auto 10px}
+  .cross-item .cross-label{font-size:0.8rem;color:var(--accent-amber);letter-spacing:1px;margin-bottom:4px}
+  .cross-item .cross-desc{font-size:0.72rem;color:var(--text-muted);line-height:1.5}
+
+  /* 角色参考图 */
+  .ref-gallery{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin:20px 0}
+  .ref-card{
+    background:rgba(20,16,45,0.4);border:1px solid var(--glass-border);
+    border-radius:var(--radius);overflow:hidden;max-width:420px;
+    transition:0.3s;
+  }
+  .ref-card:hover{border-color:var(--accent-purple);transform:translateY(-2px)}
+  .ref-card img{width:100%;height:auto;display:block}
+  .ref-label{
+    display:block;text-align:center;padding:10px;font-size:0.78rem;
+    color:var(--text-muted);letter-spacing:2px;
+  }
+
+  footer{text-align:center;padding:44px 0;font-size:0.76rem;color:var(--text-muted);letter-spacing:2px;border-top:1px solid var(--glass-border)}
+
+  @media(max-width:640px){
+    header h1{font-size:1.4rem}
+    .channel-bar{flex-direction:column;min-width:auto}
+    .channel-phase{border-radius:0!important}
+    .channel-phase:first-child{border-radius:12px 12px 0 0!important}
+    .channel-phase:last-child{border-radius:0 0 12px 12px!important}
+    .channel-arrow{transform:rotate(90deg)}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-back">← 返回作品集</a>
+    <span class="nav-title">原创设计提案</span>
+  </div>
+</nav>
+
+<header>
+  <div class="container">
+    <div class="cover">🌙</div>
+    <h1>原创设计提案：梅酒</h1>
+    <p class="subtitle">基于KAGUYANO通感设计方法论的原创角色与完整产品体验方案</p>
+    <div class="tags">
+      <span>原创设计</span><span>角色创造</span><span>通感翻译</span><span>旗舰作品</span>
+    </div>
+  </div>
+</header>
+
+<section>
+<div class="container">
+
+<h2>一、角色设定</h2>
+
+<table>
+<tr><th style="width:100px">角色名</th><td>梅酒（Umeshu / うめしゅ）</td></tr>
+<tr><th>所属</th><td>卧龙湾学院（独立于多雷米学院的新阵营）</td></tr>
+<tr><th>身份</th><td>卧龙湾学院二年级生 / 轻音乐社贝斯手</td></tr>
+<tr><th>角色内核</th><td>白天是安静乖巧的女学生，放学后在社团活动室独处时，才会卸下拘谨、露出慵懒微醺的一面。不喝酒，但生来就有一种「仿佛微醺」的松弛气质。</td></tr>
+<tr><th>性格关键词</th><td>慵懒、微醺、软媚、卸防、私密、「只在夜里温柔的人」</td></tr>
+</table>
+
+<h3>角色外观</h3>
+<table>
+<tr><th>发色/发型</th><td>深黑色长直发，发梢柔顺垂落，刘海遮住部分额头，灯光下泛着淡淡紫蓝色高光</td></tr>
+<tr><th>瞳色</th><td>明亮的紫罗兰色渐变眼眸，眼瞳通透有光泽，眼尾微微上挑，自带魅惑感</td></tr>
+<tr><th>体型</th><td>丰满性感，胸部线条突出，腰肢纤细，腿部修长，穿白色过膝袜</td></tr>
+<tr><th>服装风格</th><td>内搭黑色蕾丝边吊带内衣，外穿宽松白色衬衫（领口解开、滑落露肩），下装深色格纹百褶短裙。松垮随性，充满不经意的诱惑</td></tr>
+</table>
+
+<h3>角色场景与气质</h3>
+<p>梅酒侧躺在窗边，脸颊泛红，眼神迷离朦胧——带着微醺感。嘴唇微张、舌尖轻轻探出，一只手轻贴脸颊，姿态娇柔又撩人。背景是夜晚的室内，半拉开的浅蓝色窗帘外是模糊的城市夜景，点缀着蓝紫色光斑和光晕。她在放学后的社团活动室里独处，卸下了白天的拘谨，露出只属于自己的、慵懒的一面。</p>
+
+<h3>角色参考图</h3>
+<div class="ref-gallery">
+  <div class="ref-card">
+    <img src="../images/pattern-01.png" alt="梅酒 パターン01" loading="lazy">
+  </div>
+  <div class="ref-card">
+    <img src="../images/pattern-02.png" alt="梅酒 パターン02" loading="lazy">
+  </div>
+</div>
+
+<hr>
+
+<h2>二、通感翻译链</h2>
+<p><strong>核心通感连接词：微醺的温热卸防</strong></p>
+
+<table>
+<tr><th>梅酒风味层</th><th>感官特征</th><th>物理体验映射</th><th>产品实现</th></tr>
+<tr><td>入口的清甜</td><td>不刺激、柔滑、无阻力</td><td>无阈值入口</td><td>无次元平滑入口，毫无障碍</td></tr>
+<tr><td>酒液的温热</td><td>体温微微上升</td><td>材质温热感</td><td>特殊蓄热TPE化合物，40°C激活</td></tr>
+<tr><td>微醺的旋转</td><td>天旋地转但不失控</td><td>缓慢螺旋纹理</td><td>极度柔化的螺旋，角度仅15°</td></tr>
+<tr><td>回甘的绵长</td><td>喝完后口腔留存的甜</td><td>极低回弹速度</td><td>材质「不舍得」让你离开</td></tr>
+<tr><td>酒精的卸防</td><td>放下戒备，变得柔软</td><td>中段零纹理纯包裹</td><td>「全然的接纳」</td></tr>
+</table>
+
+<hr>
+
+<h2>三、通道结构图：「微醺夜拥」</h2>
+
+<div class="channel-diagram">
+  <h4>通道纵剖面示意 — 四段渐进式结构 / 全长约15.5cm / 有效13cm</h4>
+  <div class="channel-bar">
+    <div class="channel-phase" style="background:rgba(100,70,160,0.06)">
+      <div class="phase-icon">🚪</div>
+      <div class="phase-name">邀入</div>
+      <div class="phase-range">0 – 1cm</div>
+      <div class="phase-desc">无次元入口<br>超柔宽口<br>无环状紧缩<br>「进来吧」</div>
+    </div>
+    <div class="channel-arrow">▸</div>
+    <div class="channel-phase" style="background:rgba(130,90,180,0.06)">
+      <div class="phase-icon">🌀</div>
+      <div class="phase-name">试探</div>
+      <div class="phase-range">1 – 5cm</div>
+      <div class="phase-desc">微醺螺旋(15°)<br>散布软舌凸起<br>螺旋被软度糊化<br>「我在轻舔你」</div>
+    </div>
+    <div class="channel-arrow">▸</div>
+    <div class="channel-phase" style="background:rgba(160,120,200,0.08)">
+      <div class="phase-icon">🫂</div>
+      <div class="phase-name">卸防</div>
+      <div class="phase-range">5 – 9cm</div>
+      <div class="phase-desc"><strong>零纹理</strong><br>加厚壁(1.5倍)<br>纯温热包裹<br>「被全然接纳」</div>
+    </div>
+    <div class="channel-arrow">▸</div>
+    <div class="channel-phase" style="background:rgba(180,130,200,0.08)">
+      <div class="phase-icon">🌸</div>
+      <div class="phase-name">绽放</div>
+      <div class="phase-range">9 – 13cm</div>
+      <div class="phase-desc">6-8片柔瓣渐合<br>无硬突破环<br>温和低负压吸附<br>「终于到家了」</div>
+    </div>
+  </div>
+</div>
+
+<div class="channel-cross">
+  <div class="cross-item">
+    <svg class="cross-svg" viewBox="0 0 80 80">
+      <circle cx="40" cy="40" r="28" fill="none" stroke="rgba(180,140,220,0.3)" stroke-width="2"/>
+      <circle cx="40" cy="40" r="18" fill="none" stroke="rgba(180,140,220,0.2)" stroke-width="1" stroke-dasharray="4"/>
+      <circle cx="40" cy="40" r="6" fill="rgba(200,160,220,0.15)"/>
+      <text x="40" y="72" text-anchor="middle" fill="var(--text-muted)" font-size="9">邀入</text>
+    </svg>
+    <div class="cross-label">无次元入口</div>
+    <div class="cross-desc">宽口无环<br>平滑滑入</div>
+  </div>
+  <div class="cross-item">
+    <svg class="cross-svg" viewBox="0 0 80 80">
+      <circle cx="40" cy="40" r="28" fill="none" stroke="rgba(180,140,220,0.25)" stroke-width="2"/>
+      <path d="M20 40 Q30 20 40 30 Q50 40 60 25" fill="none" stroke="rgba(200,160,100,0.4)" stroke-width="1.5" stroke-dasharray="3"/>
+      <circle cx="32" cy="22" r="2.5" fill="rgba(220,180,140,0.35)"/>
+      <circle cx="48" cy="28" r="2" fill="rgba(220,180,140,0.3)"/>
+      <circle cx="55" cy="48" r="2.5" fill="rgba(220,180,140,0.35)"/>
+      <text x="40" y="72" text-anchor="middle" fill="var(--text-muted)" font-size="9">试探</text>
+    </svg>
+    <div class="cross-label">微醺螺旋 + 软舌</div>
+    <div class="cross-desc">15°平缓螺旋<br>散布舌状凸起</div>
+  </div>
+  <div class="cross-item">
+    <svg class="cross-svg" viewBox="0 0 80 80">
+      <circle cx="40" cy="40" r="32" fill="none" stroke="rgba(180,140,220,0.3)" stroke-width="3"/>
+      <circle cx="40" cy="40" r="12" fill="rgba(200,160,100,0.08)"/>
+      <text x="40" y="72" text-anchor="middle" fill="var(--text-muted)" font-size="9">卸防</text>
+    </svg>
+    <div class="cross-label">零纹理中段</div>
+    <div class="cross-desc">加厚壁1.5倍<br>纯温热包裹</div>
+  </div>
+  <div class="cross-item">
+    <svg class="cross-svg" viewBox="0 0 80 80">
+      <circle cx="40" cy="40" r="28" fill="none" stroke="rgba(180,140,220,0.3)" stroke-width="2"/>
+      <circle cx="40" cy="40" r="8" fill="none" stroke="rgba(220,170,180,0.3)" stroke-width="1.5"/>
+      <path d="M40 12 Q32 20 40 32 Q48 20 40 12" fill="rgba(220,170,180,0.15)"/>
+      <path d="M40 68 Q32 60 40 48 Q48 60 40 68" fill="rgba(220,170,180,0.15)"/>
+      <path d="M12 40 Q20 32 32 40 Q20 48 12 40" fill="rgba(220,170,180,0.12)"/>
+      <path d="M68 40 Q60 32 48 40 Q60 48 68 40" fill="rgba(220,170,180,0.12)"/>
+      <text x="40" y="72" text-anchor="middle" fill="var(--text-muted)" font-size="9">绽放</text>
+    </svg>
+    <div class="cross-label">柔瓣渐合</div>
+    <div class="cross-desc">6-8片花瓣<br>温和吸附</div>
+  </div>
+</div>
+
+<h3>各段详细设计说明</h3>
+
+<h4>第一阶段：邀入（0-1cm / 入口）</h4>
+<p><strong>无次元超柔入口</strong>——没有任何环状紧缩结构。口径略宽（约1.8cm），不用「瞄准」。最外层即最软，没有外壳-内层的硬度差。滑入是平滑的、不需要闯关的。<em>设计意图：梅酒对你说「进来吧」，是卸防后的自然邀请，不是诱惑的挑逗。</em></p>
+
+<h4>第二阶段：试探（1-5cm / 前段）</h4>
+<p><strong>微醺螺旋 + 舌尖轻探</strong>——螺旋角度仅15°（传统螺旋为30-45°），凸起高度仅1-1.5mm（传统为3-5mm），材质极软使所有边界模糊。散布少量极小柔软舌状凸起（约2-3mm），产生不可预测的间歇性接触。<em>设计意图：不是清醒的剐蹭，是微醺时天旋地转的混沌拥抱。她在轻舔，是试探性的、娇柔的信号。</em></p>
+
+<h4>第三阶段：卸防（5-9cm / 中段）——全产品最核心的设计决策</h4>
+<p><strong>零纹理</strong>——平滑、均匀、无任何凸起或褶皱。加厚的极软TPE（壁厚约为标准杯的1.5倍）。全然的、纯粹的、毫无保留的包裹。</p>
+<p>这是对行业「纹理越多越好」默认思维的<strong>主动违背</strong>：不是偷懒没做纹理，而是故意不做纹理。没有关卡、没有挑战——你不需要被刺激，你只需要被接纳。加厚壁带来更强的温度保持（更长的蓄热时间）和更深的隔绝感（外部世界被物理隔绝）。</p>
+
+<h4>第四阶段：绽放（9-13cm / 末段）</h4>
+<p><strong>柔瓣渐合</strong>——6-8片柔软的「花瓣」状结构从外向内逐渐闭合。不是环状「突破」，而是「花瓣渐合」——越往深处，花瓣靠得越近。没有明确的「咔嗒一下进去了」的瞬间，而是「越来越被花瓣包围→最终被柔软地裹住」。花瓣交错排列产生温和的低负压——不是强力锁住，而是温柔的、持续的、让你不想离开的吸附。</p>
+
+<hr>
+
+<h2>四、材质方案：「温热梅酒」TPE</h2>
+
+<table>
+<tr><th>材质特性</th><th>参数</th><th>设计意图</th></tr>
+<tr><td>柔软度</td><td>★★★★☆（约为油醋汁80%硬度，比游悠悠略可控）</td><td>极软但不失控——她卸防了但还有自己的形状</td></tr>
+<tr><td>回弹速度</td><td>极慢（标准TPE的30-40%）</td><td>「不舍得你离开」——抽出时材质缓缓恢复，绵长的拖拽感</td></tr>
+<tr><td>蓄热能力</td><td>40°C温水浸泡后保持温热约15-20分钟</td><td>「深夜的体温」——温热不是附加功能，而是核心体验</td></tr>
+<tr><td>出油控制</td><td>★★★★☆（优于油醋汁等早期布丁产品）</td><td>减少维护打断沉浸</td></tr>
+<tr><td>气味</td><td>极淡梅子清香（材质自带，非工业调香）</td><td>嗅觉层与「梅酒」命名形成闭环</td></tr>
+<tr><td>颜色</td><td>深紫黑色半透明（非传统粉/白色）</td><td>呼应角色发色与深夜主题</td></tr>
+<tr><td>表面处理</td><td>微哑光，触手温润不粘</td><td>减少「胶感」，提升「肌肤感」</td></tr>
+</table>
+
+<blockquote>在成人用品材质设计中，「温度」长期被忽略。梅酒的「温热蓄热TPE」将温度内化为材质本身的一部分——不是「加热后变温」，而是「材质自己保持温度」。温热对应角色核心：只在深夜对你温柔。</blockquote>
+
+<hr>
+
+<h2>五、使用叙事弧线</h2>
+
+<table>
+<tr><th>阶段</th><th>时长</th><th>物理体验</th><th>心理状态</th></tr>
+<tr><td>🌡️ 邂逅</td><td>0-2min</td><td>40°C温水激活蓄热材质；淡梅子香气随温度上升释放</td><td>「她要醒过来了」</td></tr>
+<tr><td>🚪 邀入</td><td>2-5min</td><td>无次元入口滑入，温热从第一秒开始</td><td>「她打开了门」</td></tr>
+<tr><td>🌀 微醺</td><td>5-15min</td><td>缓慢抽插，微醺螺旋的旋转包裹 + 间歇软舌接触</td><td>「世界在旋转，但你是安全的」</td></tr>
+<tr><td>🫂 卸防</td><td>15-25min</td><td>零纹理中段，纯温热包裹，极慢回弹让抽出=被挽留</td><td>「你不需要做任何事」</td></tr>
+<tr><td>🌸 绽放</td><td>25-35min+</td><td>柔瓣渐合，温和聚集感累积，微微低负压吸附</td><td>「我们一起…」</td></tr>
+</table>
+
+<hr>
+
+<h2>六、在KAGUYANO矩阵中的定位</h2>
+
+<table>
+<tr><th>维度</th><th>油醋汁</th><th>蜂蜜芥末酱</th><th>游悠悠</th><th style="color:var(--accent-amber)">梅酒</th></tr>
+<tr><td>情感基调</td><td>危险的刺激</td><td>表里的反差</td><td>松弛的共处</td><td style="color:var(--accent-amber)"><strong>私密的卸防</strong></td></tr>
+<tr><td>用户关系</td><td>征服/被征服</td><td>探索/发现</td><td>共处/陪伴</td><td style="color:var(--accent-amber)"><strong>等待/靠近</strong></td></tr>
+<tr><td>核心动词</td><td>「挑战」</td><td>「认识」</td><td>「共眠」</td><td style="color:var(--accent-amber)"><strong>「卸下」</strong></td></tr>
+<tr><td>时间感</td><td>任何时间</td><td>任何时间</td><td>慵懒午后</td><td style="color:var(--accent-amber)"><strong>只在深夜</strong></td></tr>
+<tr><td>温度感</td><td>常温</td><td>常温</td><td>常温</td><td style="color:var(--accent-amber)"><strong>温热（核心差异）</strong></td></tr>
+<tr><td>入口设计</td><td>极软包裹</td><td>前松后紧</td><td>无次元</td><td style="color:var(--accent-amber)"><strong>无次元+温热</strong></td></tr>
+<tr><td>核心创新</td><td>极端柔软</td><td>双通道对比</td><td>涨潮式渐进</td><td style="color:var(--accent-amber)"><strong>蓄热+零纹理+柔瓣</strong></td></tr>
+</table>
+
+<hr>
+
+<h2>七、产品参数总表</h2>
+
+<table>
+<tr><th>参数</th><th>值</th></tr>
+<tr><td>产品类型</td><td>中大型高柔杯（单通道·非贯通）</td></tr>
+<tr><td>参考重量</td><td>约680g</td></tr>
+<tr><td>通道全长 / 有效</td><td>约15.5cm / 13cm</td></tr>
+<tr><td>柔软度</td><td>★★★★☆</td></tr>
+<tr><td>刺激度</td><td>★☆☆☆☆（极低，纯慢玩向）</td></tr>
+<tr><td>核心创新</td><td>温热蓄热TPE · 微醺螺旋 · 零纹理中段 · 柔瓣渐合</td></tr>
+<tr><td>定价建议</td><td>¥280-360</td></tr>
+<tr><td>目标用户</td><td>追求情感沉浸的慢玩家 · 深夜独享型</td></tr>
+</table>
+
+</div>
+</section>
+
+<footer>© 2026 钟钦阳 · KAGUYANO求职作品集 · 梅酒设计提案</footer>
+</body>
+</html>
